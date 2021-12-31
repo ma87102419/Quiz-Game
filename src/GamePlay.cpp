@@ -52,6 +52,8 @@ bool GamePlay::IsTextSelected(sf::Text object)
     int mouse_x = mouse_pos.x, mouse_y = mouse_pos.y;
     if (abs(mouse_x - obj_x) <= obj_w / 2 && abs(mouse_y - obj_y) <= obj_h / 2)
         return true;
+    else
+        return false;
 }
 
 
@@ -65,7 +67,7 @@ bool GamePlay::IsTextClicked(sf::Text object, sf::Mouse::Button button)
 void GamePlay::Init()
 {
     std::cout << *m_context->m_currUser << '\n';
-    m_context->m_assets->AddFont(MAIN_FONT, "/Users/ruby/Desktop/FinalQuizGame/assets/fonts/NotoSerifTC-Medium.otf");
+    m_context->m_assets->AddFont(MAIN_FONT, "assets/fonts/NotoSerifTC-Medium.otf");
     // Welcome user
     // Question title
     m_welcomeUser.setFont(m_context->m_assets->GetFont(MAIN_FONT));

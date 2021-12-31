@@ -43,7 +43,7 @@ bool MainMenu::IsTextClicked(sf::Text object, sf::Mouse::Button button)
 
 void MainMenu::Init()
 {
-    m_context->m_assets->AddFont(MAIN_FONT, "/Users/ruby/Desktop/FinalQuizGame/assets/fonts/NotoSerifTC-Medium.otf");
+    m_context->m_assets->AddFont(MAIN_FONT, "assets/fonts/NotoSerifTC-Medium.otf");
     // Title
     m_gameTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_gameTitle.setString("Quiz Game");

@@ -1,5 +1,5 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /Users/ruby/Desktop/FinalQuizGame
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /Users/ruby/Desktop/Quiz-Game
 -- Found SFML 2.5.1 in /usr/local/lib/cmake/SFML
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/ruby/Desktop/FinalQuizGame
+-- Build files have been written to: /Users/ruby/Desktop/Quiz-Game/cmake-build-debug
