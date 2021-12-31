@@ -1,0 +1,3 @@
+/Users/ruby/Desktop/FinalQuizGame/CMakeFiles/rebuild_cache.dir
+/Users/ruby/Desktop/FinalQuizGame/CMakeFiles/edit_cache.dir
+/Users/ruby/Desktop/FinalQuizGame/CMakeFiles/FinalQuizGame.dir
