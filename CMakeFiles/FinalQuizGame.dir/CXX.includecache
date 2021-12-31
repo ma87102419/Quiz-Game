@@ -162,38 +162,12 @@ memory
 State.h
 /Users/ruby/Desktop/FinalQuizGame/include/State.h
 
-/Users/ruby/Desktop/FinalQuizGame/src/Game.cpp
-SFML/Graphics/CircleShape.hpp
--
-../include/Game.h
-/Users/ruby/Desktop/FinalQuizGame/include/Game.h
-../include/MainMenu.h
-/Users/ruby/Desktop/FinalQuizGame/include/MainMenu.h
-
 /Users/ruby/Desktop/FinalQuizGame/src/GameOver.cpp
 ../include/GameOver.h
 /Users/ruby/Desktop/FinalQuizGame/include/GameOver.h
 ../include/MainMenu.h
 /Users/ruby/Desktop/FinalQuizGame/include/MainMenu.h
 SFML/Window/Event.hpp
--
-
-/Users/ruby/Desktop/FinalQuizGame/src/GamePlay.cpp
-../include/GamePlay.h
-/Users/ruby/Desktop/FinalQuizGame/include/GamePlay.h
-../include/PauseGame.h
-/Users/ruby/Desktop/FinalQuizGame/include/PauseGame.h
-../include/MakeWish.h
-/Users/ruby/Desktop/FinalQuizGame/include/MakeWish.h
-../include/GameOver.h
-/Users/ruby/Desktop/FinalQuizGame/include/GameOver.h
-SFML/Window/Event.hpp
--
-stdlib.h
--
-cmath
--
-iostream
 -
 
 /Users/ruby/Desktop/FinalQuizGame/src/Introduction.cpp
@@ -251,12 +225,6 @@ SFML/Window/Event.hpp
 /Users/ruby/Desktop/FinalQuizGame/include/MainMenu.h
 SFML/Window/Event.hpp
 -
-
-/Users/ruby/Desktop/FinalQuizGame/src/main.cpp
-../include/Game.h
-/Users/ruby/Desktop/FinalQuizGame/include/Game.h
-../include/GamePlay.h
-/Users/ruby/Desktop/FinalQuizGame/include/GamePlay.h
 
 /usr/local/include/SFML/Config.hpp
 TargetConditionals.h
