@@ -1,2 +1,2 @@
 # Quiz-Game
-### Using C++ and SFML to create quiz game.
+Using C++ and SFML to create quiz game.
