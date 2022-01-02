@@ -66,7 +66,7 @@ void MainMenu::Init()
     m_rankButton.setString("Ranking");
     m_rankButton.setOrigin(m_rankButton.getLocalBounds().width / 2,
                            m_rankButton.getLocalBounds().height / 2);
-    m_rankButton.setPosition(m_context->m_window->getSize().x / 2,
+    m_rankButton.setPosition(m_context->m_window->getSize().x / 2 + 11, // Modify: position
                              m_context->m_window->getSize().y / 2);
     m_rankButton.setCharacterSize(20);
 
@@ -75,7 +75,7 @@ void MainMenu::Init()
     m_introButton.setString("Introduction");
     m_introButton.setOrigin(m_introButton.getLocalBounds().width / 2,
                            m_introButton.getLocalBounds().height / 2);
-    m_introButton.setPosition(m_context->m_window->getSize().x / 2,
+    m_introButton.setPosition(m_context->m_window->getSize().x / 2 + 18, // Modify: position
                              m_context->m_window->getSize().y / 2 + 25.f);
     m_introButton.setCharacterSize(20);
 
