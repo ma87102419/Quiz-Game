@@ -38,25 +38,28 @@ void PauseGame::Init()
 {
     // Title
     m_pauseTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_pauseTitle.setString("Paused");
+    m_pauseTitle.setString(L"遊戲暫停");
     m_pauseTitle.setOrigin(m_pauseTitle.getLocalBounds().width / 2,
                            m_pauseTitle.getLocalBounds().height / 2);
-    m_pauseTitle.setPosition(m_context->m_window->getSize().x / 2,
-                             m_context->m_window->getSize().y / 2 - 100.f);
+    m_pauseTitle.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
+                             m_context->m_window->getSize().y / 2 - 330.f);
+    m_pauseTitle.setCharacterSize(54);
     // Buttons
     m_continueButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_continueButton.setString("Continue");
+    m_continueButton.setString(L"繼續遊戲");
     m_continueButton.setOrigin(m_continueButton.getLocalBounds().width / 2,
                            m_pauseTitle.getLocalBounds().height / 2);
-    m_continueButton.setPosition(m_context->m_window->getSize().x / 2,
-                             m_context->m_window->getSize().y / 2 - 50.f);
+    m_continueButton.setPosition(m_context->m_window->getSize().x / 2 - 20.f,
+                             m_context->m_window->getSize().y / 2 - 150.f);
+    m_continueButton.setCharacterSize(40);
 
     m_returnMenuButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_returnMenuButton.setString("Log out and Return Menu");
+    m_returnMenuButton.setString(L"登出並返回主選單");
     m_returnMenuButton.setOrigin(m_returnMenuButton.getLocalBounds().width / 2,
                                  m_returnMenuButton.getLocalBounds().height / 2);
-    m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2,
-                                 m_context->m_window->getSize().y / 2 - 25.f);
+    m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
+                                 m_context->m_window->getSize().y / 2 - 75.f);
+    m_returnMenuButton.setCharacterSize(40);
 
 
 }

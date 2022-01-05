@@ -3,6 +3,8 @@
 #include "../include/MakeWish.h"
 #include "../include/GameOver.h"
 
+
+
 #include <SFML/Window/Event.hpp>
 
 #include <stdlib.h>
@@ -66,32 +68,22 @@ bool GamePlay::IsTextClicked(sf::Text object, sf::Mouse::Button button)
 
 void GamePlay::Init()
 {
-    std::cout << *m_context->m_currUser << '\n';
     m_context->m_assets->AddFont(MAIN_FONT, "assets/fonts/NotoSerifTC-Medium.otf");
-    // Welcome user
-    // Question title
-    m_welcomeUser.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_welcomeUser.setString("Welcome " + *m_context->m_currUser + " !");
-    m_welcomeUser.setOrigin(m_welcomeUser.getLocalBounds().width / 2,
-                            m_welcomeUser.getLocalBounds().height / 2);
-    m_welcomeUser.setPosition(m_context->m_window->getSize().x / 2 - 50.f,
-                                m_context->m_window->getSize().y / 2 - 150.f);
-    m_welcomeUser.setCharacterSize(20);
     // Question title
     m_questionTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_questionTitle.setOrigin(m_questionTitle.getLocalBounds().width / 2,
                                m_questionTitle.getLocalBounds().height / 2);
-    m_questionTitle.setPosition(m_context->m_window->getSize().x / 2,
-                            m_context->m_window->getSize().y / 2 - 150.f);
-    m_questionTitle.setCharacterSize(20);
+    m_questionTitle.setPosition(m_context->m_window->getSize().x / 2 - 120.f,
+                            m_context->m_window->getSize().y / 2 - 330.f);
+    m_questionTitle.setCharacterSize(54);
 
     // Question content
     m_questionContent.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_questionContent.setOrigin(m_questionContent.getLocalBounds().width / 2,
                                  m_questionContent.getLocalBounds().height / 2);
-    m_questionContent.setPosition(m_context->m_window->getSize().x / 2,
-                                 m_context->m_window->getSize().y / 2 - 125.f);
-    m_questionContent.setCharacterSize(20);
+    m_questionContent.setPosition(m_context->m_window->getSize().x / 2 - 200.f,
+                                 m_context->m_window->getSize().y / 2 - 200.f);
+    m_questionContent.setCharacterSize(30);
 
     // Button
     m_aButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
@@ -99,58 +91,58 @@ void GamePlay::Init()
                         m_aButton.getLocalBounds().height / 2);
     m_aButton.setPosition(m_context->m_window->getSize().x / 2 - 50.f,
                              m_context->m_window->getSize().y / 2 - 25.f);
-    m_aButton.setCharacterSize(20);
+    m_aButton.setCharacterSize(30);
 
     m_bButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_bButton.setOrigin(m_bButton.getLocalBounds().width / 2,
                         m_bButton.getLocalBounds().height / 2);
-    m_bButton.setPosition(m_context->m_window->getSize().x / 2 + 50.f,
-                          m_context->m_window->getSize().y / 2 - 25.f);
-    m_bButton.setCharacterSize(20);
+    m_bButton.setPosition(m_context->m_window->getSize().x / 2 - 50.f,
+                          m_context->m_window->getSize().y / 2 + 50.f);
+    m_bButton.setCharacterSize(30);
 
     m_cButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_cButton.setOrigin(m_cButton.getLocalBounds().width / 2,
                         m_cButton.getLocalBounds().height / 2);
     m_cButton.setPosition(m_context->m_window->getSize().x / 2 - 50.f,
-                          m_context->m_window->getSize().y / 2 + 50.f);
-    m_cButton.setCharacterSize(20);
+                          m_context->m_window->getSize().y / 2 + 125.f);
+    m_cButton.setCharacterSize(30);
 
     m_dButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_dButton.setOrigin(m_dButton.getLocalBounds().width / 2,
                         m_dButton.getLocalBounds().height / 2);
-    m_dButton.setPosition(m_context->m_window->getSize().x / 2 + 50.f,
-                          m_context->m_window->getSize().y / 2 + 50.f);
-    m_dButton.setCharacterSize(20);
+    m_dButton.setPosition(m_context->m_window->getSize().x / 2 - 50.f,
+                          m_context->m_window->getSize().y / 2 + 200.f);
+    m_dButton.setCharacterSize(30);
 
     m_pauseButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_pauseButton.setString(L"Pause");
+    m_pauseButton.setString(L"暫停");
     m_pauseButton.setOrigin(m_pauseButton.getLocalBounds().width / 2,
                         m_pauseButton.getLocalBounds().height / 2);
-    m_pauseButton.setPosition(m_context->m_window->getSize().x / 2 - 100.f,
-                          m_context->m_window->getSize().y / 2  - 25.f);
-    m_pauseButton.setCharacterSize(20);
+    m_pauseButton.setPosition(m_context->m_window->getSize().x / 2 - 460.f,
+                          m_context->m_window->getSize().y / 2  + 337.f);
+    m_pauseButton.setCharacterSize(40);
 
     // level
     m_levelText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_levelText.setString("Level : " + std::to_string(m_level));
-    m_levelText.setCharacterSize(15);
+    m_levelText.setCharacterSize(40);
 
     // life
     m_lifeText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_lifeText.setString("Life Remain : " + std::to_string(m_lifeRemain));
     m_lifeText.setOrigin(m_lifeText.getLocalBounds().width / 2,
                          m_lifeText.getLocalBounds().height / 2);
-    m_lifeText.setPosition(m_context->m_window->getSize().x / 2 - 150.f,
-                          m_context->m_window->getSize().y / 2 - 125.f);
-    m_lifeText.setCharacterSize(15);
+    m_lifeText.setPosition(m_context->m_window->getSize().x / 2 - 388.f,
+                          m_context->m_window->getSize().y / 2 - 300.f);
+    m_lifeText.setCharacterSize(40);
 
     // Time Remain Text
     m_timeRemainText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_timeRemainText.setOrigin(m_lifeText.getLocalBounds().width / 2,
                          m_lifeText.getLocalBounds().height / 2);
-    m_timeRemainText.setPosition(m_context->m_window->getSize().x / 2 - 150.f,
-                           m_context->m_window->getSize().y / 2 - 100.f);
-    m_timeRemainText.setCharacterSize(15);
+    m_timeRemainText.setPosition(m_context->m_window->getSize().x / 2 + 600.f,
+                           m_context->m_window->getSize().y / 2 - 350.f);
+    m_timeRemainText.setCharacterSize(40);
     // Read files
     if(m_quesFile)
     {
@@ -307,6 +299,19 @@ void GamePlay::Update(sf::Time deltaTime)
             m_questionTitle.setString("Question " + std::to_string(m_questionNumber));
             // random pick question
             m_pickQuestion = (rand() % 24) + (m_level - 1) * 24;
+            int quesLength = ques_vec[m_pickQuestion].length();
+            /*std::string s = "";
+            for (int i = 0; i < quesLength; i++)
+            {
+                if (i == 0 || i % 10 != 0)
+                    s.push_back(ques_vec[m_pickQuestion][i]);
+                else if (i % 10 == 0)
+                {
+                    s.push_back('\n');
+                    s.push_back(ques_vec[m_pickQuestion][i]);
+                }
+            }
+            std::cout << ques_vec[m_pickQuestion][0];*/
             sf::String question = sf::String::fromUtf8(ques_vec[m_pickQuestion].begin(), ques_vec[m_pickQuestion].end());
             sf::String aOption = sf::String::fromUtf8(option_vec[m_pickQuestion][0].begin(), option_vec[m_pickQuestion][0].end());
             sf::String bOption = sf::String::fromUtf8(option_vec[m_pickQuestion][1].begin(), option_vec[m_pickQuestion][1].end());

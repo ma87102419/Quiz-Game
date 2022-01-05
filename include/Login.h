@@ -22,6 +22,9 @@ private:
     sf::Text m_loginTitle;
     sf::Text m_loginButton;
     sf::Text m_returnMenuButton;
+    sf::Text m_backButton;
+    sf::Text m_userName;
+    sf::Text m_pwd;
     sf::Text m_nameText;
     sf::Text m_pwdText;
 
@@ -33,6 +36,9 @@ private:
 
     bool m_isLoginButtonSelected;
     bool m_isLoginButtonPressed;
+
+    bool m_isBackButtonSelected;
+    bool m_isBackButtonPressed;
 
     bool m_isUserBoxSelected;
     bool m_isUserBoxPressed;

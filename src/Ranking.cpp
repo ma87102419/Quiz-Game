@@ -37,14 +37,14 @@ void Ranking::Init()
 {
     // Title
     m_rankingTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_rankingTitle.setString("Ranking");
+    m_rankingTitle.setString(L"願望清單");
     m_rankingTitle.setOrigin(m_rankingTitle.getLocalBounds().width / 2,
                              m_rankingTitle.getLocalBounds().height / 2);
     m_rankingTitle.setPosition(m_context->m_window->getSize().x / 2,
                              m_context->m_window->getSize().y / 2 - 100.f);
     // Buttons
     m_returnMenuButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_returnMenuButton.setString("Return Menu");
+    m_returnMenuButton.setString(L"回到主選單");
     m_returnMenuButton.setOrigin(m_returnMenuButton.getLocalBounds().width / 2,
                                  m_returnMenuButton.getLocalBounds().height / 2);
     m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2,

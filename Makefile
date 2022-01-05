@@ -225,6 +225,30 @@ src/GamePlay.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/GamePlay.cpp.s
 .PHONY : src/GamePlay.cpp.s
 
+src/InternalWelcome.o: src/InternalWelcome.cpp.o
+.PHONY : src/InternalWelcome.o
+
+# target to build an object file
+src/InternalWelcome.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/InternalWelcome.cpp.o
+.PHONY : src/InternalWelcome.cpp.o
+
+src/InternalWelcome.i: src/InternalWelcome.cpp.i
+.PHONY : src/InternalWelcome.i
+
+# target to preprocess a source file
+src/InternalWelcome.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/InternalWelcome.cpp.i
+.PHONY : src/InternalWelcome.cpp.i
+
+src/InternalWelcome.s: src/InternalWelcome.cpp.s
+.PHONY : src/InternalWelcome.s
+
+# target to generate assembly for a file
+src/InternalWelcome.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/InternalWelcome.cpp.s
+.PHONY : src/InternalWelcome.cpp.s
+
 src/Introduction.o: src/Introduction.cpp.o
 .PHONY : src/Introduction.o
 
@@ -369,6 +393,30 @@ src/Ranking.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/Ranking.cpp.s
 .PHONY : src/Ranking.cpp.s
 
+src/Register.o: src/Register.cpp.o
+.PHONY : src/Register.o
+
+# target to build an object file
+src/Register.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/Register.cpp.o
+.PHONY : src/Register.cpp.o
+
+src/Register.i: src/Register.cpp.i
+.PHONY : src/Register.i
+
+# target to preprocess a source file
+src/Register.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/Register.cpp.i
+.PHONY : src/Register.cpp.i
+
+src/Register.s: src/Register.cpp.s
+.PHONY : src/Register.s
+
+# target to generate assembly for a file
+src/Register.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/Register.cpp.s
+.PHONY : src/Register.cpp.s
+
 src/StateMan.o: src/StateMan.cpp.o
 .PHONY : src/StateMan.o
 
@@ -392,6 +440,30 @@ src/StateMan.s: src/StateMan.cpp.s
 src/StateMan.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/StateMan.cpp.s
 .PHONY : src/StateMan.cpp.s
+
+src/Welcome.o: src/Welcome.cpp.o
+.PHONY : src/Welcome.o
+
+# target to build an object file
+src/Welcome.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/Welcome.cpp.o
+.PHONY : src/Welcome.cpp.o
+
+src/Welcome.i: src/Welcome.cpp.i
+.PHONY : src/Welcome.i
+
+# target to preprocess a source file
+src/Welcome.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/Welcome.cpp.i
+.PHONY : src/Welcome.cpp.i
+
+src/Welcome.s: src/Welcome.cpp.s
+.PHONY : src/Welcome.s
+
+# target to generate assembly for a file
+src/Welcome.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/Welcome.cpp.s
+.PHONY : src/Welcome.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -438,6 +510,9 @@ help:
 	@echo "... src/GamePlay.o"
 	@echo "... src/GamePlay.i"
 	@echo "... src/GamePlay.s"
+	@echo "... src/InternalWelcome.o"
+	@echo "... src/InternalWelcome.i"
+	@echo "... src/InternalWelcome.s"
 	@echo "... src/Introduction.o"
 	@echo "... src/Introduction.i"
 	@echo "... src/Introduction.s"
@@ -456,9 +531,15 @@ help:
 	@echo "... src/Ranking.o"
 	@echo "... src/Ranking.i"
 	@echo "... src/Ranking.s"
+	@echo "... src/Register.o"
+	@echo "... src/Register.i"
+	@echo "... src/Register.s"
 	@echo "... src/StateMan.o"
 	@echo "... src/StateMan.i"
 	@echo "... src/StateMan.s"
+	@echo "... src/Welcome.o"
+	@echo "... src/Welcome.i"
+	@echo "... src/Welcome.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

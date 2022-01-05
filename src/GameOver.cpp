@@ -39,29 +39,30 @@ void GameOver::Init()
 {
     // Title
     m_gameOverTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_gameOverTitle.setString("Game Over");
+    m_gameOverTitle.setString(L"遊戲結束");
     m_gameOverTitle.setOrigin(m_gameOverTitle.getLocalBounds().width / 2,
                               m_gameOverTitle.getLocalBounds().height / 2);
-    m_gameOverTitle.setPosition(m_context->m_window->getSize().x / 2,
-                                m_context->m_window->getSize().y / 2 - 150.f);
+    m_gameOverTitle.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
+                                m_context->m_window->getSize().y / 2 - 330.f);
+    m_gameOverTitle.setCharacterSize(54);
 
     // Return Menu Button
     m_returnMenuButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_returnMenuButton.setString("Log out and Return Menu");
+    m_returnMenuButton.setString(L"登出並回到主選單");
     m_returnMenuButton.setOrigin(m_returnMenuButton.getLocalBounds().width / 2,
                                  m_returnMenuButton.getLocalBounds().height / 2);
-    m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2,
-                              m_context->m_window->getSize().y / 2 - 25.f);
-    m_returnMenuButton.setCharacterSize(20);
+    m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
+                              m_context->m_window->getSize().y / 2 - 150.f);
+    m_returnMenuButton.setCharacterSize(40);
 
     // Exit Button
     m_exitButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_exitButton.setString("Exit");
+    m_exitButton.setString(L"退出遊戲");
     m_exitButton.setOrigin(m_exitButton.getLocalBounds().width / 2,
                            m_exitButton.getLocalBounds().height / 2);
     m_exitButton.setPosition(m_context->m_window->getSize().x / 2,
-                             m_context->m_window->getSize().y / 2 + 25.f);
-    m_exitButton.setCharacterSize(20);
+                             m_context->m_window->getSize().y / 2 - 75.f);
+    m_exitButton.setCharacterSize(40);
 }
 
 void GameOver::ProcessInput()

@@ -68,20 +68,22 @@ void MakeWish::Init()
 {
     // Title
     m_makeWishTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_makeWishTitle.setString("Congratulations! " + *m_context->m_currUser + " Make a Wish!");
+    m_makeWishTitle.setString(L"恭喜！許個願吧！");
     m_makeWishTitle.setOrigin(m_makeWishTitle.getLocalBounds().width / 2,
                               m_makeWishTitle.getLocalBounds().height / 2);
-    m_makeWishTitle.setPosition(m_context->m_window->getSize().x / 2,
-                              m_context->m_window->getSize().y / 2 - 150.f);
+    m_makeWishTitle.setPosition(m_context->m_window->getSize().x / 2 - 160.f,
+                              m_context->m_window->getSize().y / 2 - 330.f);
+    m_makeWishTitle.setCharacterSize(54);
     // Buttons
     m_submitButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_submitButton.setString("Submit");
+    m_submitButton.setString(L"送出");
     m_submitButton.setOrigin(m_submitButton.getLocalBounds().width / 2,
                              m_submitButton.getLocalBounds().height / 2);
-    m_submitButton.setPosition(m_context->m_window->getSize().x / 2,
-                                   m_context->m_window->getSize().y / 2 + 150.f);
+    m_submitButton.setPosition(m_context->m_window->getSize().x / 2 - 40.f,
+                                   m_context->m_window->getSize().y / 2 + 250.f);
+    m_submitButton.setCharacterSize(40);
     // Textboxes
-    m_wishBox.setSize(sf::Vector2f(600, 200));
+    m_wishBox.setSize(sf::Vector2f(800, 400));
     m_wishBox.setFillColor(sf::Color::White);
     m_wishBox.setOutlineThickness(2);
     m_wishBox.setOrigin(m_wishBox.getLocalBounds().width / 2,

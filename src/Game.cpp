@@ -6,7 +6,7 @@
 
 Game::Game() : m_context(std::make_shared<Context>())
 {
-    m_context->m_window->create(sf::VideoMode(640, 352), "Quiz Game", sf::Style::Close);
+    m_context->m_window->create(sf::VideoMode(1000, 750, 32), "Quiz Game", sf::Style::Close);
     m_context->m_states->Add(std::make_unique<MainMenu>(m_context));
 }
 

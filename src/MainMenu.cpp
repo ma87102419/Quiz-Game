@@ -1,7 +1,7 @@
 #include "../include/MainMenu.h"
 #include "../include/Introduction.h"
 #include "../include/Ranking.h"
-#include "../include/Login.h"
+#include "../include/Welcome.h"
 
 #include <SFML/Window/Event.hpp>
 #include <cmath>
@@ -46,47 +46,48 @@ void MainMenu::Init()
     m_context->m_assets->AddFont(MAIN_FONT, "assets/fonts/NotoSerifTC-Medium.otf");
     // Title
     m_gameTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_gameTitle.setString("Quiz Game");
+    m_gameTitle.setString(L"台大知識王");
     m_gameTitle.setOrigin(m_gameTitle.getLocalBounds().width / 2,
                           m_gameTitle.getLocalBounds().height / 2);
-    m_gameTitle.setPosition(m_context->m_window->getSize().x / 2,
-                            m_context->m_window->getSize().y / 2 - 150.f);
+    m_gameTitle.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
+                            m_context->m_window->getSize().y / 2 - 330.f);
+    m_gameTitle.setCharacterSize(54);
 
     // Play Button
     m_playButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_playButton.setString("Play");
+    m_playButton.setString(L"開始遊戲");
     m_playButton.setOrigin(m_playButton.getLocalBounds().width / 2,
                            m_playButton.getLocalBounds().height / 2);
     m_playButton.setPosition(m_context->m_window->getSize().x / 2,
-                             m_context->m_window->getSize().y / 2 - 25.f);
-    m_playButton.setCharacterSize(20);
+                             m_context->m_window->getSize().y / 2 - 150.f);
+    m_playButton.setCharacterSize(40);
 
     // Ranking Button
     m_rankButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_rankButton.setString("Ranking");
+    m_rankButton.setString(L"願望清單");
     m_rankButton.setOrigin(m_rankButton.getLocalBounds().width / 2,
                            m_rankButton.getLocalBounds().height / 2);
     m_rankButton.setPosition(m_context->m_window->getSize().x / 2,
-                             m_context->m_window->getSize().y / 2);
-    m_rankButton.setCharacterSize(20);
+                             m_context->m_window->getSize().y / 2 - 75.f);
+    m_rankButton.setCharacterSize(40);
 
     // Intro Button
     m_introButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_introButton.setString("Introduction");
+    m_introButton.setString(L"遊戲介紹");
     m_introButton.setOrigin(m_introButton.getLocalBounds().width / 2,
                            m_introButton.getLocalBounds().height / 2);
-    m_introButton.setPosition(m_context->m_window->getSize().x / 2,
-                             m_context->m_window->getSize().y / 2 + 25.f);
-    m_introButton.setCharacterSize(20);
+    m_introButton.setPosition(m_context->m_window->getSize().x / 2 - 10.f,
+                             m_context->m_window->getSize().y / 2);
+    m_introButton.setCharacterSize(40);
 
     // Exit Button
     m_exitButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_exitButton.setString("Exit");
+    m_exitButton.setString(L"退出遊戲");
     m_exitButton.setOrigin(m_exitButton.getLocalBounds().width / 2,
                            m_exitButton.getLocalBounds().height / 2);
     m_exitButton.setPosition(m_context->m_window->getSize().x / 2,
-                             m_context->m_window->getSize().y / 2 + 50.f);
-    m_exitButton.setCharacterSize(20);
+                             m_context->m_window->getSize().y / 2 + 75.f);
+    m_exitButton.setCharacterSize(40);
 }
 
 
@@ -218,7 +219,7 @@ void MainMenu::Update(sf::Time deltaTime)
     if(m_isPlayButtonPressed)
     {
         m_context->m_states->PopCurrent();
-        m_context->m_states->Add(std::make_unique<Login>(m_context), true);
+        m_context->m_states->Add(std::make_unique<Welcome>(m_context), true);
     }
     else if (m_isRankButtonPressed)
     {
