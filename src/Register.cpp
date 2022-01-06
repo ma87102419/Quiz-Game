@@ -1,4 +1,4 @@
-#include "../include/Login.h"
+#include "../include/Register.h"
 #include "../include/MainMenu.h"
 #include "../include/Welcome.h"
 #include "../include/InternalWelcome.h"
@@ -7,23 +7,23 @@
 #include <SFML/Window/Event.hpp>
 
 
-Login::Login(std::shared_ptr<Context> &context)
+Register::Register(std::shared_ptr<Context> &context)
         : m_context(context),
           m_isReturnMenuButtonSelected(false), m_isReturnMenuButtonPressed(false),
-          m_isLoginButtonSelected(false), m_isLoginButtonPressed(false),
+          m_isRegisterButtonSelected(false), m_isRegisterButtonPressed(false),
           m_isUserBoxSelected(false), m_isUserBoxPressed(false),
           m_isPwdBoxSelected(false), m_isPwdBoxPressed(false),
           m_userInfoFile("assets/Info/user_info_utf8.txt"),
-          m_validUser(false),
-          m_name(""), m_password("")
+          m_name(""), m_password(""),
+          m_validUser(true)
 {
 }
 
-Login::~Login()
+Register::~Register()
 {
 }
 
-bool Login::IsTextSelected(sf::Text object)
+bool Register::IsTextSelected(sf::Text object)
 {
     int obj_x = object.getPosition().x, obj_y = object.getPosition().y;
     int obj_w = object.getGlobalBounds().width, obj_h = object.getGlobalBounds().height;
@@ -34,14 +34,14 @@ bool Login::IsTextSelected(sf::Text object)
 }
 
 
-bool Login::IsTextClicked(sf::Text object, sf::Mouse::Button button)
+bool Register::IsTextClicked(sf::Text object, sf::Mouse::Button button)
 {
     if (sf::Mouse::isButtonPressed(button) && IsTextSelected(object))
         return true;
     return false;
 }
 
-bool Login::IsBoxSelected(sf::RectangleShape object)
+bool Register::IsBoxSelected(sf::RectangleShape object)
 {
     int obj_x = object.getPosition().x, obj_y = object.getPosition().y;
     int obj_w = object.getGlobalBounds().width, obj_h = object.getGlobalBounds().height;
@@ -54,7 +54,7 @@ bool Login::IsBoxSelected(sf::RectangleShape object)
 }
 
 
-bool Login::IsBoxClicked(sf::RectangleShape object, sf::Mouse::Button button)
+bool Register::IsBoxClicked(sf::RectangleShape object, sf::Mouse::Button button)
 {
     if (sf::Mouse::isButtonPressed(button) && IsBoxSelected(object))
         return true;
@@ -62,7 +62,7 @@ bool Login::IsBoxClicked(sf::RectangleShape object, sf::Mouse::Button button)
 }
 
 
-void Login::InputLogic(int charTyped, std::string &s)
+void Register::InputLogic(int charTyped, std::string &s)
 {
     if (charTyped != DELETE_KEY && charTyped != ENTER_KEY && charTyped != ESCAPE_KEY && charTyped != SPACE_KEY)
         s.push_back(static_cast<char>(charTyped));
@@ -70,7 +70,7 @@ void Login::InputLogic(int charTyped, std::string &s)
         s.pop_back();
 }
 
-std::string Login::MaskPwd(std::string s)
+std::string Register::MaskPwd(std::string s)
 {
     std::string masked_s = "";
     for (int i = 0; i < s.length(); i++)
@@ -78,31 +78,31 @@ std::string Login::MaskPwd(std::string s)
     return masked_s;
 }
 
-void Login::Init()
+void Register::Init()
 {
     // Title
-    m_loginTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_loginTitle.setString( L"登入來開始遊戲吧！");
-    m_loginTitle.setOrigin(m_loginButton.getLocalBounds().width / 2,
-                            m_loginButton.getLocalBounds().height / 2);
-    m_loginTitle.setPosition(m_context->m_window->getSize().x / 2 - 300.f,
-                             m_context->m_window->getSize().y / 2 - 330.f);
-    m_loginTitle.setCharacterSize(54);
+    m_registerTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
+    m_registerTitle.setString(L"註冊來開始遊戲");
+    m_registerTitle.setOrigin(m_registerTitle.getLocalBounds().width / 2,
+                            m_registerTitle.getLocalBounds().height / 2);
+    m_registerTitle.setPosition(m_context->m_window->getSize().x / 2 - 300.f,
+                              m_context->m_window->getSize().y / 2 - 330.f);
+    m_registerTitle.setCharacterSize(54);
     // Buttons
-    m_loginButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_loginButton.setString(L"登入");
-    m_loginButton.setOrigin(m_loginButton.getLocalBounds().width / 2,
-                            m_loginButton.getLocalBounds().height / 2);
-    m_loginButton.setPosition(m_context->m_window->getSize().x / 2,
-                                   m_context->m_window->getSize().y / 2);
-    m_loginButton.setCharacterSize(40);
+    m_registerButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
+    m_registerButton.setString(L"註冊");
+    m_registerButton.setOrigin(m_registerButton.getLocalBounds().width / 2,
+                            m_registerButton.getLocalBounds().height / 2);
+    m_registerButton.setPosition(m_context->m_window->getSize().x / 2,
+                              m_context->m_window->getSize().y / 2);
+    m_registerButton.setCharacterSize(40);
 
     m_backButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_backButton.setString(L"上一頁");
     m_backButton.setOrigin(m_backButton.getLocalBounds().width / 2,
                            m_backButton.getLocalBounds().height / 2);
     m_backButton.setPosition(m_context->m_window->getSize().x / 2,
-                              m_context->m_window->getSize().y / 2 + 150.f);
+                             m_context->m_window->getSize().y / 2 + 150.f);
     m_backButton.setCharacterSize(40);
 
     m_returnMenuButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
@@ -112,13 +112,14 @@ void Login::Init()
     m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2,
                                    m_context->m_window->getSize().y / 2 + 225.f);
     m_returnMenuButton.setCharacterSize(40);
+
     // user name and pwd
     m_userName.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_userName.setString(L"使用者名稱 : ");
     m_userName.setOrigin(m_userName.getLocalBounds().width / 2,
                          m_userName.getLocalBounds().height / 2);
     m_userName.setPosition(m_context->m_window->getSize().x / 2 - 150.f,
-                             m_context->m_window->getSize().y / 2 - 120.f);
+                           m_context->m_window->getSize().y / 2 - 120.f);
     m_userName.setCharacterSize(40);
 
     m_pwd.setFont(m_context->m_assets->GetFont(MAIN_FONT));
@@ -126,7 +127,7 @@ void Login::Init()
     m_pwd.setOrigin(m_pwd.getLocalBounds().width / 2,
                     m_pwd.getLocalBounds().height / 2);
     m_pwd.setPosition(m_context->m_window->getSize().x / 2 - 200.f,
-                           m_context->m_window->getSize().y / 2 - 60.f);
+                      m_context->m_window->getSize().y / 2 - 60.f);
     m_pwd.setCharacterSize(40);
     // Textboxes
     m_userNameBox.setSize(sf::Vector2f(300, 30));
@@ -135,7 +136,7 @@ void Login::Init()
     m_userNameBox.setOrigin(m_userNameBox.getLocalBounds().width / 2,
                             m_userNameBox.getLocalBounds().height / 2);
     m_userNameBox.setPosition(m_context->m_window->getSize().x / 2 + 90.f,
-                                   m_context->m_window->getSize().y / 2 - 100.f);
+                              m_context->m_window->getSize().y / 2 - 100.f);
 
     m_pwdBox.setSize(sf::Vector2f(300, 30));
     m_pwdBox.setFillColor(sf::Color::White);
@@ -152,23 +153,23 @@ void Login::Init()
     m_nameText.setOrigin(m_userNameBox.getLocalBounds().width / 2,
                          m_userNameBox.getLocalBounds().height / 2);
     m_nameText.setPosition(m_context->m_window->getSize().x / 2 + 90.f,
-                              m_context->m_window->getSize().y / 2 -100.f);
+                           m_context->m_window->getSize().y / 2 -100.f);
     m_nameText.setCharacterSize(25);
 
     m_pwdText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_pwdText.setFillColor(sf::Color::Black);
-    m_pwdText.setString(Login::MaskPwd(m_password));
+    m_pwdText.setString(Register::MaskPwd(m_password));
     m_pwdText.setOrigin(m_pwdBox.getLocalBounds().width / 2,
                         m_pwdBox.getLocalBounds().height / 2);
     m_pwdText.setPosition(m_context->m_window->getSize().x / 2 + 90.f,
-                           m_context->m_window->getSize().y / 2 - 50.f);
+                          m_context->m_window->getSize().y / 2 - 50.f);
     m_pwdText.setCharacterSize(25);
 
     if(m_userInfoFile)
     {
         int i = 0;
         while(m_userInfoFile >> tmp_username >>  tmp_password >> tmp_complete_status >> tmp_total_ques_answered >> tmp_time_used >>
-                       tmp_life >> tmp_current_lv >> tmp_account_status >> tmp_wish >> tmp_wish_status >> tmp_banned_status >> tmp_banned_time)
+                             tmp_life >> tmp_current_lv >> tmp_account_status >> tmp_wish >> tmp_wish_status >> tmp_banned_status >> tmp_banned_time)
         {
             tmpUserArray[i] = tmp_username;
             tmpPwdArray[i] = tmp_password;
@@ -187,9 +188,10 @@ void Login::Init()
         m_allUser = i;
     }
 
+
 }
 
-void Login::ProcessInput()
+void Register::ProcessInput()
 {
     sf::Event event;
     while (m_context->m_window->pollEvent(event))
@@ -202,15 +204,15 @@ void Login::ProcessInput()
         if (IsTextSelected(m_returnMenuButton))
         {
             m_isReturnMenuButtonSelected = true;
-            m_isLoginButtonSelected = false;
+            m_isRegisterButtonSelected = false;
             m_isBackButtonSelected = false;
             m_isUserBoxSelected = false;
             m_isPwdBoxSelected = false;
         }
-        else if (IsTextSelected(m_loginButton))
+        else if (IsTextSelected(m_registerButton))
         {
             m_isReturnMenuButtonSelected = false;
-            m_isLoginButtonSelected = true;
+            m_isRegisterButtonSelected = true;
             m_isBackButtonSelected = false;
             m_isUserBoxSelected = false;
             m_isPwdBoxSelected = false;
@@ -218,7 +220,7 @@ void Login::ProcessInput()
         else if (IsTextSelected(m_backButton))
         {
             m_isReturnMenuButtonSelected = false;
-            m_isLoginButtonSelected = false;
+            m_isRegisterButtonSelected = false;
             m_isBackButtonSelected = true;
             m_isUserBoxSelected = false;
             m_isPwdBoxSelected = false;
@@ -226,7 +228,7 @@ void Login::ProcessInput()
         else if (IsBoxSelected(m_userNameBox))
         {
             m_isReturnMenuButtonSelected = false;
-            m_isLoginButtonSelected = false;
+            m_isRegisterButtonSelected = false;
             m_isBackButtonSelected = false;
             m_isUserBoxSelected = true;
             m_isPwdBoxSelected = false;
@@ -235,7 +237,7 @@ void Login::ProcessInput()
         else if (IsBoxSelected(m_pwdBox))
         {
             m_isReturnMenuButtonSelected = false;
-            m_isLoginButtonSelected = false;
+            m_isRegisterButtonSelected = false;
             m_isBackButtonSelected = false;
             m_isUserBoxSelected = false;
             m_isPwdBoxSelected = true;
@@ -243,7 +245,7 @@ void Login::ProcessInput()
         else
         {
             m_isReturnMenuButtonSelected = false;
-            m_isLoginButtonSelected = false;
+            m_isRegisterButtonSelected = false;
             m_isBackButtonSelected = false;
             m_isUserBoxSelected = false;
             m_isPwdBoxSelected = false;
@@ -252,15 +254,15 @@ void Login::ProcessInput()
         if (IsTextClicked(m_returnMenuButton, sf::Mouse::Left))
         {
             m_isReturnMenuButtonPressed = true;
-            m_isLoginButtonPressed = false;
+            m_isRegisterButtonPressed = false;
             m_isBackButtonPressed = false;
             m_isUserBoxPressed = false;
             m_isPwdBoxPressed = false;
         }
-        else if (IsTextClicked(m_loginButton, sf::Mouse::Left))
+        else if (IsTextClicked(m_registerButton, sf::Mouse::Left))
         {
             m_isReturnMenuButtonPressed = false;
-            m_isLoginButtonPressed = true;
+            m_isRegisterButtonPressed = true;
             m_isBackButtonPressed = false;
             m_isUserBoxPressed = false;
             m_isPwdBoxPressed = false;
@@ -268,7 +270,7 @@ void Login::ProcessInput()
         else if (IsTextClicked(m_backButton, sf::Mouse::Left))
         {
             m_isReturnMenuButtonPressed = false;
-            m_isLoginButtonPressed = false;
+            m_isRegisterButtonPressed = false;
             m_isBackButtonPressed = true;
             m_isUserBoxPressed = false;
             m_isPwdBoxPressed = false;
@@ -276,7 +278,7 @@ void Login::ProcessInput()
         else if (IsBoxClicked(m_userNameBox, sf::Mouse::Left))
         {
             m_isReturnMenuButtonPressed = false;
-            m_isLoginButtonPressed = false;
+            m_isRegisterButtonPressed = false;
             m_isBackButtonPressed = false;
             m_isUserBoxPressed = true;
             m_isPwdBoxPressed = false;
@@ -284,7 +286,7 @@ void Login::ProcessInput()
         else if (IsBoxClicked(m_pwdBox, sf::Mouse::Left))
         {
             m_isReturnMenuButtonPressed = false;
-            m_isLoginButtonPressed = false;
+            m_isRegisterButtonPressed = false;
             m_isBackButtonPressed = false;
             m_isUserBoxPressed = false;
             m_isPwdBoxPressed = true;
@@ -292,7 +294,7 @@ void Login::ProcessInput()
         else
         {
             m_isReturnMenuButtonPressed = false;
-            m_isLoginButtonPressed = false;
+            m_isRegisterButtonPressed = false;
             m_isBackButtonPressed = false;
         }
 
@@ -308,34 +310,52 @@ void Login::ProcessInput()
                 else
                 {
                     InputLogic(charTyped, m_password);
-                    m_pwdText.setString(Login::MaskPwd(m_password) + "|");
+                    m_pwdText.setString(Register::MaskPwd(m_password) + "|");
                 }
             }
         }
     }
     for (int i = 0; i < m_allUser; i++)
-        if (m_name == tmpUserArray[i] && m_password == tmpPwdArray[i])
+    {
+        if (m_name == tmpUserArray[i])
         {
-            m_validUser = true;
-            m_validUserIndex = i;
+            m_validUser = false;
             break;
         }
+        if (m_validUser)
+        {
+            m_allUser += 1;
+            tmpUserArray[m_allUser] = m_name;
+            tmpPwdArray[m_allUser] = m_password;
+            tmpCompleteStatusArray[m_allUser] = 0;
+            tmpTotalQuesAnsweredArray[m_allUser] = 0;
+            tmpTimeUsedArray[m_allUser] = 0;
+            tmpLifeArray[m_allUser] = 5;
+            tmpCurrentLvArray[m_allUser] = 1;
+            tmpAccountStatusArray[m_allUser] = 1;
+            tmpWishArray[m_allUser] = "";
+            tmpWishStatusArray[m_allUser] = 0;
+            tmpBannedStatusArray[m_allUser] = 0;
+            tmpBannedTimeArray[m_allUser] = 0;
+        }
+    }
+
 }
 
-void Login::Update(sf::Time deltaTime)
+void Register::Update(sf::Time deltaTime)
 {
     if (m_isReturnMenuButtonSelected)
     {
         m_returnMenuButton.setFillColor(sf::Color::Black);
-        m_loginButton.setFillColor(sf::Color::White);
+        m_registerButton.setFillColor(sf::Color::White);
         m_backButton.setFillColor(sf::Color::White);
         m_userNameBox.setOutlineColor(sf::Color::White);
         m_pwdBox.setOutlineColor(sf::Color::White);
     }
-    else if (m_isLoginButtonSelected)
+    else if (m_isRegisterButtonSelected)
     {
         m_returnMenuButton.setFillColor(sf::Color::White);
-        m_loginButton.setFillColor(sf::Color::Black);
+        m_registerButton.setFillColor(sf::Color::Black);
         m_backButton.setFillColor(sf::Color::White);
         m_userNameBox.setOutlineColor(sf::Color::White);
         m_pwdBox.setOutlineColor(sf::Color::White);
@@ -343,7 +363,7 @@ void Login::Update(sf::Time deltaTime)
     else if (m_isBackButtonSelected)
     {
         m_returnMenuButton.setFillColor(sf::Color::White);
-        m_loginButton.setFillColor(sf::Color::White);
+        m_registerButton.setFillColor(sf::Color::White);
         m_backButton.setFillColor(sf::Color::Black);
         m_userNameBox.setOutlineColor(sf::Color::White);
         m_pwdBox.setOutlineColor(sf::Color::White);
@@ -351,7 +371,7 @@ void Login::Update(sf::Time deltaTime)
     else if (m_isUserBoxSelected)
     {
         m_returnMenuButton.setFillColor(sf::Color::White);
-        m_loginButton.setFillColor(sf::Color::White);
+        m_registerButton.setFillColor(sf::Color::White);
         m_backButton.setFillColor(sf::Color::White);
         m_userNameBox.setOutlineColor(sf::Color::Black);
         m_pwdBox.setOutlineColor(sf::Color::White);
@@ -359,7 +379,7 @@ void Login::Update(sf::Time deltaTime)
     else if (m_isPwdBoxSelected)
     {
         m_returnMenuButton.setFillColor(sf::Color::White);
-        m_loginButton.setFillColor(sf::Color::White);
+        m_registerButton.setFillColor(sf::Color::White);
         m_backButton.setFillColor(sf::Color::White);
         m_userNameBox.setOutlineColor(sf::Color::White);
         m_pwdBox.setOutlineColor(sf::Color::Black);
@@ -367,7 +387,7 @@ void Login::Update(sf::Time deltaTime)
     else
     {
         m_returnMenuButton.setFillColor(sf::Color::White);
-        m_loginButton.setFillColor(sf::Color::White);
+        m_registerButton.setFillColor(sf::Color::White);
         m_backButton.setFillColor(sf::Color::White);
         m_userNameBox.setOutlineColor(sf::Color::White);
         m_pwdBox.setOutlineColor(sf::Color::White);
@@ -383,45 +403,35 @@ void Login::Update(sf::Time deltaTime)
         m_context->m_states->PopCurrent();
         m_context->m_states->Add(std::make_unique<Welcome>(m_context));
     }
-    else if (m_isLoginButtonPressed) // TODO &&...check valid user
+    else if (m_isRegisterButtonPressed) // TODO &&...check valid user
     {
-        if (m_validUser)
-        {
-            m_context->m_states->PopCurrent();
-            *m_context->m_currUser = m_name;
-            m_context->m_states->Add(std::make_unique<InternalWelcome>(m_context));
-        }
-        else
-        {
-            m_context->m_states->PopCurrent();
-            *m_context->m_currUser = m_name;
-            m_context->m_states->Add(std::make_unique<Welcome>(m_context));
-        }
-
+        m_context->m_states->PopCurrent();
+        *m_context->m_currUser = m_name;
+        m_context->m_states->Add(std::make_unique<InternalWelcome>(m_context));
     }
     else if (m_isUserBoxPressed)
     {
         m_userNameBox.setOutlineColor(sf::Color::Black);
         m_pwdBox.setOutlineColor(sf::Color::White);
         m_nameText.setString(m_name + '|');
-        m_pwdText.setString(Login::MaskPwd(m_password));
+        m_pwdText.setString(Register::MaskPwd(m_password));
     }
     else if (m_isPwdBoxPressed)
     {
         m_pwdBox.setOutlineColor(sf::Color::Black);
         m_userNameBox.setOutlineColor(sf::Color::White);
         m_nameText.setString(m_name);
-        m_pwdText.setString(Login::MaskPwd(m_password) + '|');
+        m_pwdText.setString(Register::MaskPwd(m_password) + '|');
     }
 
 }
 
-void Login::Draw()
+void Register::Draw()
 {
     m_context->m_window->clear(sf::Color::Blue);
-    m_context->m_window->draw(m_loginTitle);
+    m_context->m_window->draw(m_registerTitle);
     m_context->m_window->draw(m_returnMenuButton);
-    m_context->m_window->draw(m_loginButton);
+    m_context->m_window->draw(m_registerButton);
     m_context->m_window->draw(m_backButton);
     m_context->m_window->draw(m_userName);
     m_context->m_window->draw(m_pwd);

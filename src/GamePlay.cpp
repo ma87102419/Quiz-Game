@@ -81,7 +81,7 @@ void GamePlay::Init()
     m_questionContent.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_questionContent.setOrigin(m_questionContent.getLocalBounds().width / 2,
                                  m_questionContent.getLocalBounds().height / 2);
-    m_questionContent.setPosition(m_context->m_window->getSize().x / 2 - 200.f,
+    m_questionContent.setPosition(m_context->m_window->getSize().x / 2 - 220.f,
                                  m_context->m_window->getSize().y / 2 - 200.f);
     m_questionContent.setCharacterSize(30);
 
@@ -299,15 +299,15 @@ void GamePlay::Update(sf::Time deltaTime)
             m_questionTitle.setString("Question " + std::to_string(m_questionNumber));
             // random pick question
             m_pickQuestion = (rand() % 24) + (m_level - 1) * 24;
-            int quesLength = ques_vec[m_pickQuestion].length();
-            /*std::string s = "";
+            /*int quesLength = ques_vec[m_pickQuestion].length();
+            std::string s = "";
             for (int i = 0; i < quesLength; i++)
             {
                 if (i == 0 || i % 10 != 0)
                     s.push_back(ques_vec[m_pickQuestion][i]);
                 else if (i % 10 == 0)
                 {
-                    s.push_back('\n');
+                    s.push_back("\n");
                     s.push_back(ques_vec[m_pickQuestion][i]);
                 }
             }

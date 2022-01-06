@@ -20,6 +20,9 @@ struct Context
     std::unique_ptr<Engine::StateMan> m_states;
     std::unique_ptr<sf::RenderWindow> m_window;
     std::unique_ptr<std::string> m_currUser;
+    std::unique_ptr<std::string> m_currUserpwd;
+    std::unique_ptr<int> m_currUserindex;
+
 
     Context()
     {
@@ -27,6 +30,8 @@ struct Context
         m_states = std::make_unique<Engine::StateMan>();
         m_window = std::make_unique<sf::RenderWindow>();
         m_currUser = std::make_unique<std::string>();
+        m_currUserpwd = std::make_unique<std::string>();
+        m_currUserindex = std::make_unique<int>();
     }
 };
 

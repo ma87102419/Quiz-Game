@@ -16,12 +16,12 @@
 #define ESCAPE_KEY 27
 #define SPACE_KEY 32
 
-class Login : public Engine::State
+class Register : public Engine::State
 {
 private:
     std::shared_ptr<Context> m_context;
-    sf::Text m_loginTitle;
-    sf::Text m_loginButton;
+    sf::Text m_registerTitle;
+    sf::Text m_registerButton;
     sf::Text m_returnMenuButton;
     sf::Text m_backButton;
     sf::Text m_userName;
@@ -35,8 +35,8 @@ private:
     bool m_isReturnMenuButtonSelected;
     bool m_isReturnMenuButtonPressed;
 
-    bool m_isLoginButtonSelected;
-    bool m_isLoginButtonPressed;
+    bool m_isRegisterButtonSelected;
+    bool m_isRegisterButtonPressed;
 
     bool m_isBackButtonSelected;
     bool m_isBackButtonPressed;
@@ -51,10 +51,10 @@ private:
     int m_validUserIndex;
     int m_allUser;
 
+    std::ifstream m_userInfoFile;
+
     std::string m_name;
     std::string m_password;
-
-    std::ifstream m_userInfoFile;
 
     std::string tmp_username;
     std::string tmp_password;
@@ -82,8 +82,6 @@ private:
     bool tmpBannedStatusArray[100] = {};
     int tmpBannedTimeArray[100] = {};
 
-
-
     void InputLogic(int charTyped, std::string &s);
     std::string MaskPwd(std::string s);
 
@@ -94,8 +92,8 @@ private:
     bool IsBoxClicked(sf::RectangleShape object, sf::Mouse::Button button);
 
 public:
-    Login(std::shared_ptr<Context> &context);
-    ~Login();
+    Register(std::shared_ptr<Context> &context);
+    ~Register();
 
     void Init() override;
     void ProcessInput() override;
