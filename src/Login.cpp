@@ -31,6 +31,8 @@ bool Login::IsTextSelected(sf::Text object)
     int mouse_x = mouse_pos.x, mouse_y = mouse_pos.y;
     if (abs(mouse_x - obj_x) <= obj_w / 2 && abs(mouse_y - obj_y) <= obj_h / 2)
         return true;
+    else
+        return false;
 }
 
 
