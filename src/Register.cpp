@@ -2,6 +2,7 @@
 #include "../include/MainMenu.h"
 #include "../include/Welcome.h"
 #include "../include/InternalWelcome.h"
+#include "../include/Game.h"
 
 
 #include <SFML/Window/Event.hpp>
@@ -167,30 +168,6 @@ void Register::Init()
                           m_context->m_window->getSize().y / 2 - 50.f);
     m_pwdText.setCharacterSize(25);
 
-    if(m_userInfoFile)
-    {
-        int i = 0;
-        while(m_userInfoFile >> tmp_username >>  tmp_password >> tmp_complete_status >> tmp_total_ques_answered >> tmp_time_used >>
-                             tmp_life >> tmp_current_lv >> tmp_account_status >> tmp_wish >> tmp_wish_status >> tmp_banned_status >> tmp_banned_time)
-        {
-            tmpUserArray[i] = tmp_username;
-            tmpPwdArray[i] = tmp_password;
-            tmpCompleteStatusArray[i] = tmp_complete_status;
-            tmpTotalQuesAnsweredArray[i] = tmp_total_ques_answered;
-            tmpTimeUsedArray[i] = tmp_time_used;
-            tmpLifeArray[i] = tmp_life;
-            tmpCurrentLvArray[i] = tmp_current_lv;
-            tmpAccountStatusArray[i] = tmp_account_status;
-            tmpWishArray[i] = tmp_wish;
-            tmpWishStatusArray[i] = tmp_wish_status;
-            tmpBannedStatusArray[i] = tmp_banned_status;
-            tmpBannedTimeArray[i] = tmp_banned_time;
-            i ++;
-        }
-        m_allUser = i;
-    }
-
-
 }
 
 void Register::ProcessInput()
@@ -317,30 +294,16 @@ void Register::ProcessInput()
             }
         }
     }
-    for (int i = 0; i < m_allUser; i++)
+
+    for (int i = 0; i < (*m_context->m_userInfoVec).size(); i++)
     {
-        if (m_name == tmpUserArray[i])
+        if (m_name == (*m_context->m_userInfoVec)[i].User)
         {
             m_validUser = false;
             break;
         }
-        if (m_validUser)
-        {
-            m_allUser += 1;
-            tmpUserArray[m_allUser] = m_name;
-            tmpPwdArray[m_allUser] = m_password;
-            tmpCompleteStatusArray[m_allUser] = 0;
-            tmpTotalQuesAnsweredArray[m_allUser] = 0;
-            tmpTimeUsedArray[m_allUser] = 0;
-            tmpLifeArray[m_allUser] = 5;
-            tmpCurrentLvArray[m_allUser] = 1;
-            tmpAccountStatusArray[m_allUser] = 1;
-            tmpWishArray[m_allUser] = "";
-            tmpWishStatusArray[m_allUser] = 0;
-            tmpBannedStatusArray[m_allUser] = 0;
-            tmpBannedTimeArray[m_allUser] = 0;
-        }
     }
+    
 
 }
 
@@ -407,8 +370,25 @@ void Register::Update(sf::Time deltaTime)
     }
     else if (m_isRegisterButtonPressed) // TODO &&...check valid user
     {
+        struct UserInfo tmp_info;
+        if (m_validUser)
+        {
+            tmp_info.User = m_name;
+            tmp_info.Pwd = m_password;
+            tmp_info.CompleteStatus = 0;
+            tmp_info.TotalQuesAnswered = 0;
+            tmp_info.TimeUsed = 0;
+            tmp_info.Life = 5;
+            tmp_info.CurrentLv = 1;
+            tmp_info.AccountStatus = 1;
+            tmp_info.Wish = "";
+            tmp_info.WishStatus = 0;
+            tmp_info.BannedStatus = 0;
+            tmp_info.BannedTime = 0;
+            (*m_context->m_userInfoVec).push_back(tmp_info);
+            *m_context->m_currUserindex = (*m_context->m_userInfoVec).size() - 1;
+        }
         m_context->m_states->PopCurrent();
-        *m_context->m_currUser = m_name;
         m_context->m_states->Add(std::make_unique<InternalWelcome>(m_context));
     }
     else if (m_isUserBoxPressed)
@@ -425,7 +405,7 @@ void Register::Update(sf::Time deltaTime)
         m_nameText.setString(m_name);
         m_pwdText.setString(Register::MaskPwd(m_password) + '|');
     }
-
+    
 }
 
 void Register::Draw()

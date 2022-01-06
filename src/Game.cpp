@@ -2,6 +2,7 @@
 
 #include "../include/Game.h"
 #include "../include/MainMenu.h"
+#include <iostream>
 
 
 Game::Game() : m_context(std::make_shared<Context>()), m_userInfoFile("assets/Info/user_info_utf8.txt")
@@ -12,6 +13,8 @@ Game::Game() : m_context(std::make_shared<Context>()), m_userInfoFile("assets/In
 
 Game::~Game()
 {
+    // TODO: write m_userInfoVec into file
+    std::cout << "Goodbye" << '\n';
 }
 
 void Game::Run()
@@ -32,6 +35,8 @@ void Game::Run()
             (*m_context->m_userInfoVec).push_back(tmp_info);
         }
     }
+    //for (int i = 0; i < (*m_context->m_userInfoVec).size(); i++)
+    //    std::cout << (*m_context->m_userInfoVec)[i].User << '\n';
 
 
     while (m_context->m_window->isOpen())

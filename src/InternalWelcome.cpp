@@ -44,9 +44,9 @@ void InternalWelcome::Init()
 {
     m_context->m_assets->AddFont(MAIN_FONT, "assets/fonts/NotoSerifTC-Medium.otf");
     // Welcome user
-    std::cout << *m_context->m_currUser << '\n';
+    std::cout << (*m_context->m_userInfoVec)[*m_context->m_currUserindex].User << '\n';
     m_internalWelcomeTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_internalWelcomeTitle.setString("Welcome " + *m_context->m_currUser + " !");
+    m_internalWelcomeTitle.setString("Welcome " + (*m_context->m_userInfoVec)[*m_context->m_currUserindex].User + " !");
     m_internalWelcomeTitle.setOrigin(m_internalWelcomeTitle.getLocalBounds().width / 2,
                                      m_internalWelcomeTitle.getLocalBounds().height / 2);
     m_internalWelcomeTitle.setPosition(m_context->m_window->getSize().x / 2 - 45.f,

@@ -166,29 +166,6 @@ void Login::Init()
                            m_context->m_window->getSize().y / 2 - 50.f);
     m_pwdText.setCharacterSize(25);
 
-    if(m_userInfoFile)
-    {
-        int i = 0;
-        while(m_userInfoFile >> tmp_username >>  tmp_password >> tmp_complete_status >> tmp_total_ques_answered >> tmp_time_used >>
-                       tmp_life >> tmp_current_lv >> tmp_account_status >> tmp_wish >> tmp_wish_status >> tmp_banned_status >> tmp_banned_time)
-        {
-            tmpUserArray[i] = tmp_username;
-            tmpPwdArray[i] = tmp_password;
-            tmpCompleteStatusArray[i] = tmp_complete_status;
-            tmpTotalQuesAnsweredArray[i] = tmp_total_ques_answered;
-            tmpTimeUsedArray[i] = tmp_time_used;
-            tmpLifeArray[i] = tmp_life;
-            tmpCurrentLvArray[i] = tmp_current_lv;
-            tmpAccountStatusArray[i] = tmp_account_status;
-            tmpWishArray[i] = tmp_wish;
-            tmpWishStatusArray[i] = tmp_wish_status;
-            tmpBannedStatusArray[i] = tmp_banned_status;
-            tmpBannedTimeArray[i] = tmp_banned_time;
-            i ++;
-        }
-        m_allUser = i;
-    }
-
 }
 
 void Login::ProcessInput()
@@ -315,8 +292,9 @@ void Login::ProcessInput()
             }
         }
     }
-    for (int i = 0; i < m_allUser; i++)
-        if (m_name == tmpUserArray[i] && m_password == tmpPwdArray[i])
+    for (int i = 0; i < (*m_context->m_userInfoVec).size(); i++)
+        if (m_name == (*m_context->m_userInfoVec)[i].User
+            && m_password == (*m_context->m_userInfoVec)[i].Pwd)
         {
             m_validUser = true;
             m_validUserIndex = i;
@@ -390,13 +368,13 @@ void Login::Update(sf::Time deltaTime)
         if (m_validUser)
         {
             m_context->m_states->PopCurrent();
-            *m_context->m_currUser = m_name;
+            *m_context->m_currUserindex = m_validUserIndex;
             m_context->m_states->Add(std::make_unique<InternalWelcome>(m_context));
         }
         else
         {
             m_context->m_states->PopCurrent();
-            *m_context->m_currUser = m_name;
+            *m_context->m_currUserindex = -1;
             m_context->m_states->Add(std::make_unique<Welcome>(m_context));
         }
 

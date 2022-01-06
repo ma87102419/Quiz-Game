@@ -131,7 +131,7 @@ void PauseGame::Update(sf::Time deltaTime)
         m_context->m_states->PopCurrent();
     else if (m_isReturnMenuButtonPressed)
     {
-        *m_context->m_currUser = "";
+        *m_context->m_currUserindex = -1;
         m_context->m_states->PopCurrent();
         m_context->m_states->Add(std::make_unique<MainMenu>(m_context));
     }

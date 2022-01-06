@@ -5,6 +5,7 @@
 #include <fstream>
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/CircleShape.hpp>
 
 #include "AssetMan.h"
 #include "StateMan.h"
@@ -37,8 +38,6 @@ struct Context
     std::unique_ptr<Engine::AssetMan> m_assets;
     std::unique_ptr<Engine::StateMan> m_states;
     std::unique_ptr<sf::RenderWindow> m_window;
-    std::unique_ptr<std::string> m_currUser;
-    std::unique_ptr<int> m_allUser;
     std::unique_ptr<int> m_currUserindex;
     std::unique_ptr<std::vector<UserInfo>>m_userInfoVec;
 
@@ -48,8 +47,6 @@ struct Context
         m_assets = std::make_unique<Engine::AssetMan>();
         m_states = std::make_unique<Engine::StateMan>();
         m_window = std::make_unique<sf::RenderWindow>();
-        m_currUser = std::make_unique<std::string>();
-        m_allUser = std::make_unique<int>();
         m_currUserindex = std::make_unique<int>();
         m_userInfoVec = std::make_unique<std::vector<UserInfo>>();
 

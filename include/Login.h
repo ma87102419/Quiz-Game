@@ -56,34 +56,6 @@ private:
 
     std::ifstream m_userInfoFile;
 
-    std::string tmp_username;
-    std::string tmp_password;
-    bool tmp_complete_status;
-    int tmp_total_ques_answered;
-    int tmp_time_used;
-    int tmp_life;
-    int tmp_current_lv;
-    bool tmp_account_status;
-    std::string tmp_wish;
-    bool tmp_wish_status;
-    bool tmp_banned_status;
-    int tmp_banned_time;
-
-    std::string tmpUserArray[100] = {};
-    std::string tmpPwdArray[100] = {};
-    bool tmpCompleteStatusArray[100] = {};
-    int tmpTotalQuesAnsweredArray[100] = {};
-    int tmpTimeUsedArray[100] = {};
-    int tmpLifeArray[100] = {};
-    int tmpCurrentLvArray[100] = {};
-    bool tmpAccountStatusArray[100] = {};
-    std::string tmpWishArray[100] = {};
-    bool tmpWishStatusArray[100] = {};
-    bool tmpBannedStatusArray[100] = {};
-    int tmpBannedTimeArray[100] = {};
-
-
-
     void InputLogic(int charTyped, std::string &s);
     std::string MaskPwd(std::string s);
 
