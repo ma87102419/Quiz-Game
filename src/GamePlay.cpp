@@ -37,7 +37,8 @@ GamePlay::GamePlay(std::shared_ptr<Context> &context)
           answer_char(""),
           m_pickQuestion(0),
           m_lifeRemain(5),
-          m_startTime(0)
+          m_startTime(0),
+          m_totalNumAnswered(0)
 {
     srand(time(nullptr));
 }
@@ -172,6 +173,35 @@ void GamePlay::Init()
             answer_vec.push_back(answer_char);
     }
     m_answerFile.close();
+
+    //Sprite
+    m_context->m_assets->AddTexture(FIRST, "assets/textures/1.png");
+    m_first.setTexture(m_context->m_assets->GetTexture(FIRST));
+    m_first.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+
+    m_context->m_assets->AddTexture(SECOND, "assets/textures/2.png");
+    m_second.setTexture(m_context->m_assets->GetTexture(SECOND));
+    m_second.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+
+    m_context->m_assets->AddTexture(THIRD, "assets/textures/3.png");
+    m_third.setTexture(m_context->m_assets->GetTexture(THIRD));
+    m_third.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+
+    m_context->m_assets->AddTexture(FOURTH, "assets/textures/4.png");
+    m_fourth.setTexture(m_context->m_assets->GetTexture(FOURTH));
+    m_fourth.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+
+    m_context->m_assets->AddTexture(FIFTH, "assets/textures/5.png");
+    m_fifth.setTexture(m_context->m_assets->GetTexture(FIFTH));
+    m_fifth.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+
+    m_context->m_assets->AddTexture(SIXTH, "assets/textures/6.png");
+    m_sixth.setTexture(m_context->m_assets->GetTexture(SIXTH));
+    m_sixth.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+
+    m_context->m_assets->AddTexture(SEVENTH, "assets/textures/7-1.png");
+    m_seventh.setTexture(m_context->m_assets->GetTexture(SEVENTH));
+    m_seventh.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
 }
 
 void GamePlay::ProcessInput()
@@ -327,7 +357,9 @@ void GamePlay::Update(sf::Time deltaTime)
             m_answer = answer_vec[m_pickQuestion];
             m_releaseQuestion = false;
             m_startTime = time(NULL);
+            m_totalNumAnswered += 1;
         }
+
 
         // Color the buttons
         if(m_isAButtonSelected)
@@ -422,10 +454,33 @@ void GamePlay::Update(sf::Time deltaTime)
     }
     else
         m_context->m_states->Add(std::make_unique<PauseGame>(m_context));
+
     if (m_level >= 7 && m_lifeRemain > 0)
+    {
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].TotalQuesAnswered += m_totalNumAnswered;
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].Life = m_lifeRemain;
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].CompleteStatus = true;
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].CurrentLv = m_level;
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].Wish = '*';
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].WishStatus = true;
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedStatus = false;
+        //tmp_info.TimeUsed = 0;
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedTime = 0;
         m_context->m_states->Add(std::make_unique<MakeWish>(m_context));
+    }
     if (m_level < 7 && m_lifeRemain <= 0)
+    {
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].TotalQuesAnswered += m_totalNumAnswered;
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].Life = m_lifeRemain;
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].CompleteStatus = false;
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].CurrentLv = m_level;
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].Wish = '*';
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].WishStatus = false;
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedStatus = true;
+        //tmp_info.TimeUsed = 0;
+        //tmp_info.BannedTime = 0;
         m_context->m_states->Add(std::make_unique<GameOver>(m_context));
+    }
 
 }
 
@@ -443,6 +498,20 @@ void GamePlay::Draw()
     m_context->m_window->draw(m_levelText);
     m_context->m_window->draw(m_lifeText);
     m_context->m_window->draw(m_timeRemainText);
+    if (m_level == 1)
+        m_context->m_window->draw(m_first);
+    if (m_level == 2)
+        m_context->m_window->draw(m_second);
+    if (m_level == 3)
+        m_context->m_window->draw(m_third);
+    if (m_level == 4)
+        m_context->m_window->draw(m_fourth);
+    if (m_level == 5)
+        m_context->m_window->draw(m_fifth);
+    if (m_level == 6)
+        m_context->m_window->draw(m_sixth);
+    if (m_level == 7)
+        m_context->m_window->draw(m_seventh);
 
 
     m_context->m_window->display();

@@ -35,6 +35,14 @@ private:
     sf::Text m_welcomeUser;
     sf::Text m_timeRemainText;
 
+    sf::Sprite m_first;
+    sf::Sprite m_second;
+    sf::Sprite m_third;
+    sf::Sprite m_fourth;
+    sf::Sprite m_fifth;
+    sf::Sprite m_sixth;
+    sf::Sprite m_seventh;
+
     bool m_releaseQuestion;
 
     bool m_isAButtonSelected;
@@ -55,6 +63,7 @@ private:
     int m_pickQuestion;
     int m_lifeRemain;
     int m_questionNumber;
+    int m_totalNumAnswered;
 
     std::ifstream m_quesFile;
     std::ifstream m_optFile;

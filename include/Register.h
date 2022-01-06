@@ -51,7 +51,6 @@ private:
     int m_validUserIndex;
     int m_allUser;
 
-    std::ifstream m_userInfoFile;
 
     std::string m_name;
     std::string m_password;    

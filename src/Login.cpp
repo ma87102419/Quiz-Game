@@ -13,7 +13,6 @@ Login::Login(std::shared_ptr<Context> &context)
           m_isLoginButtonSelected(false), m_isLoginButtonPressed(false),
           m_isUserBoxSelected(false), m_isUserBoxPressed(false),
           m_isPwdBoxSelected(false), m_isPwdBoxPressed(false),
-          m_userInfoFile("assets/Info/user_info_utf8.txt"),
           m_validUser(false),
           m_name(""), m_password("")
 {

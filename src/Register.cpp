@@ -14,7 +14,6 @@ Register::Register(std::shared_ptr<Context> &context)
           m_isRegisterButtonSelected(false), m_isRegisterButtonPressed(false),
           m_isUserBoxSelected(false), m_isUserBoxPressed(false),
           m_isPwdBoxSelected(false), m_isPwdBoxPressed(false),
-          m_userInfoFile("assets/Info/user_info_utf8.txt"),
           m_name(""), m_password(""),
           m_validUser(true)
 {

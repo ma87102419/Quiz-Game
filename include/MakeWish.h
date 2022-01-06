@@ -24,6 +24,8 @@ private:
     sf::Text m_submitButton;
     sf::Text m_wishText;
 
+    sf::Sprite m_prof;
+
     bool m_isSubmitButtonSelected;
     bool m_isSubmitButtonPressed;
 

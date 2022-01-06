@@ -49,12 +49,9 @@ private:
 
     bool m_validUser;
     int m_validUserIndex;
-    int m_allUser;
 
     std::string m_name;
     std::string m_password;
-
-    std::ifstream m_userInfoFile;
 
     void InputLogic(int charTyped, std::string &s);
     std::string MaskPwd(std::string s);

@@ -9,6 +9,7 @@ MakeWish::MakeWish(std::shared_ptr<Context> &context)
           m_isSubmitButtonSelected(false), m_isSubmitButtonPressed(false),
           m_isWishBoxSelected(false), m_isWishBoxPressed(false),
           m_wish("")
+
 {
 }
 
@@ -103,6 +104,11 @@ void MakeWish::Init()
     m_wishText.setPosition(m_context->m_window->getSize().x / 2,
                            m_context->m_window->getSize().y / 2 + 25.f);
     m_wishText.setCharacterSize(25);
+
+    //Sprite
+    m_context->m_assets->AddTexture(PROF, "assets/textures/8-1.png");
+    m_prof.setTexture(m_context->m_assets->GetTexture(PROF));
+    m_prof.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
 
 
 }
@@ -199,6 +205,7 @@ void MakeWish::Draw()
     m_context->m_window->draw(m_submitButton);
     m_context->m_window->draw(m_wishBox);
     m_context->m_window->draw(m_wishText);
+    m_context->m_window->draw(m_prof);
     m_context->m_window->display();
 }
 

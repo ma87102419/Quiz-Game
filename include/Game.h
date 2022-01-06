@@ -15,6 +15,14 @@
 enum AssetID
 {
     MAIN_FONT = 0,
+    FIRST,
+    SECOND,
+    THIRD,
+    FOURTH,
+    FIFTH,
+    SIXTH,
+    SEVENTH,
+    PROF,
 };
 
 struct UserInfo
@@ -57,7 +65,7 @@ class Game
 {
 private:
     std::shared_ptr<Context> m_context;
-    std::ifstream m_userInfoFile;
+    std::string m_UserInfoFileName;
     const sf::Time TIME_PER_FRAME = sf::seconds(1.f/60.f);
 
 public:
