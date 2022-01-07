@@ -56,6 +56,7 @@ private:
     bool m_isCButtonSelected;
     bool m_isDButtonSelected;
     bool m_isPauseSelected;
+    bool m_isButtonSelected;
     bool m_isAButtonPressed;
     bool m_isBButtonPressed;
     bool m_isCButtonPressed;

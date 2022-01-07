@@ -1,7 +1,9 @@
 #include <SFML/Graphics/CircleShape.hpp>
+#include <typeinfo>
 
 #include "../include/Game.h"
 #include "../include/MainMenu.h"
+#include "../include/MakeWish.h"
 #include <iostream>
 
 
@@ -55,12 +57,12 @@ void Game::Run()
     std::cout << (*m_context->m_userInfoVec).size() << '\n';
     //for (int i = 0; i < (*m_context->m_userInfoVec).size(); i++)
     //    std::cout << (*m_context->m_userInfoVec)[i].User << '\n';
+
     if (!bgMusic.openFromFile("assets/music/NTU_song.ogg"))
         std::cout << "ERROR" << '\n';
-    bgMusic.setVolume(30.f);
-    bgMusic.setPlayingOffset(sf::seconds(25.f));
-    bgMusic.setLoop(true);
-    bgMusic.play();
+
+    if (!wishMusic.openFromFile("assets/music/wish.ogg"))
+        std::cout << "ERROR" << '\n';
 
     while (m_context->m_window->isOpen())
     {
@@ -71,6 +73,23 @@ void Game::Run()
             timeSinceLastFrame -= TIME_PER_FRAME;
 
             m_context->m_states->ProcessStateChange();
+            if (typeid(*m_context->m_states->GetCurrent()) == typeid(MakeWish)
+                && wishMusic.getStatus() != sf::Music::Playing)
+            {
+                bgMusic.stop();
+                wishMusic.setVolume(30.f);
+                wishMusic.setLoop(true);
+                wishMusic.play();
+            }
+            else if (typeid(*m_context->m_states->GetCurrent()) != typeid(MakeWish)
+                    && bgMusic.getStatus() != sf::Music::Playing)
+            {
+                wishMusic.stop();
+                bgMusic.setVolume(30.f);
+                bgMusic.setPlayingOffset(sf::seconds(25.5f));
+                bgMusic.setLoop(true);
+                bgMusic.play();
+            }
             m_context->m_states->GetCurrent()->ProcessInput();
             m_context->m_states->GetCurrent()->Update(TIME_PER_FRAME);
             m_context->m_states->GetCurrent()->Draw();

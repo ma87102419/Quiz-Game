@@ -69,6 +69,7 @@ private:
     std::string m_UserInfoFileName;
     const sf::Time TIME_PER_FRAME = sf::seconds(1.f/60.f);
     sf::Music bgMusic;
+    sf::Music wishMusic;
 
 public:
     Game();

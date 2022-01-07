@@ -227,6 +227,7 @@ void GamePlay::ProcessInput()
             m_isCButtonSelected = false;
             m_isDButtonSelected = false;
             m_isPauseSelected = false;
+            m_isButtonSelected = true;
 
         }
         else if (IsTextSelected(m_bButton))
@@ -236,6 +237,7 @@ void GamePlay::ProcessInput()
             m_isCButtonSelected = false;
             m_isDButtonSelected = false;
             m_isPauseSelected = false;
+            m_isButtonSelected = true;
         }
         else if (IsTextSelected(m_cButton))
         {
@@ -244,6 +246,7 @@ void GamePlay::ProcessInput()
             m_isCButtonSelected = true;
             m_isDButtonSelected = false;
             m_isPauseSelected = false;
+            m_isButtonSelected = true;
         }
         else if (IsTextSelected(m_dButton))
         {
@@ -252,6 +255,7 @@ void GamePlay::ProcessInput()
             m_isCButtonSelected = false;
             m_isDButtonSelected = true;
             m_isPauseSelected = false;
+            m_isButtonSelected = true;
         }
         else if (IsTextSelected(m_pauseButton))
         {
@@ -260,6 +264,7 @@ void GamePlay::ProcessInput()
             m_isCButtonSelected = false;
             m_isDButtonSelected = false;
             m_isPauseSelected = true;
+            m_isButtonSelected = true;
         }
         else
         {
@@ -268,7 +273,9 @@ void GamePlay::ProcessInput()
             m_isCButtonSelected = false;
             m_isDButtonSelected = false;
             m_isPauseSelected = false;
+            m_isButtonSelected = false;
         }
+
         // TODO:點擊範圍太小，要點字體最上方
         if (IsTextClicked(m_aButton, sf::Mouse::Left))
         {
@@ -278,7 +285,6 @@ void GamePlay::ProcessInput()
             m_isDButtonPressed = false;
             m_isPausePressed = false;
             m_isChoiceButtonPressed = true;
-
         }
         else if (IsTextClicked(m_bButton, sf::Mouse::Left))
         {
@@ -315,7 +321,7 @@ void GamePlay::ProcessInput()
             m_isDButtonPressed = false;
             m_isPausePressed = true;
         }
-        else
+        else if (!m_isButtonSelected)
         {
             m_isAButtonPressed = false;
             m_isBButtonPressed = false;
@@ -423,7 +429,7 @@ void GamePlay::Update(sf::Time deltaTime)
             m_pauseButton.setFillColor(sf::Color::White);
         }
 
-        if (m_isChoiceButtonPressed)
+        if (m_isChoiceButtonPressed && !sf::Mouse::isButtonPressed(sf::Mouse::Left))
         {
             if ((m_isAButtonPressed && m_answer == "A") || (m_isBButtonPressed && m_answer == "B")
                 || (m_isCButtonPressed && m_answer == "C") || (m_isDButtonPressed && m_answer == "D"))
@@ -448,6 +454,11 @@ void GamePlay::Update(sf::Time deltaTime)
             m_levelText.setString("Level : " + std::to_string(m_level));
             m_lifeText.setString("Life Remain : " + std::to_string(m_lifeRemain));
             m_releaseQuestion = true;
+            m_isAButtonPressed = false;
+            m_isBButtonPressed = false;
+            m_isCButtonPressed = false;
+            m_isDButtonPressed = false;
+            m_isPausePressed = false;
             m_isChoiceButtonPressed = false;
         }
 
