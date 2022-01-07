@@ -202,7 +202,15 @@ void GamePlay::Init()
     m_context->m_assets->AddTexture(SEVENTH, "assets/textures/7-1.png");
     m_seventh.setTexture(m_context->m_assets->GetTexture(SEVENTH));
     m_seventh.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+
+    if (!wrongBuffer.loadFromFile("assets/music/wrong.ogg"))
+        std::cout << "ERROR"<< '\n';
+    m_wrongSound.setBuffer(wrongBuffer);
+    if (!correctBuffer.loadFromFile("assets/music/correct.ogg"))
+        std::cout << "ERROR"<< '\n';
+    m_correctSound.setBuffer(correctBuffer);
 }
+
 
 void GamePlay::ProcessInput()
 {
@@ -419,10 +427,18 @@ void GamePlay::Update(sf::Time deltaTime)
         {
             if ((m_isAButtonPressed && m_answer == "A") || (m_isBButtonPressed && m_answer == "B")
                 || (m_isCButtonPressed && m_answer == "C") || (m_isDButtonPressed && m_answer == "D"))
+            {
+                m_correctSound.play();
+                //while (m_correctSound.getStatus() == sf::Music::Playing);
+                sf::sleep(sf::seconds(0.8f));
                 m_level += 1;
+            }
             else if ((m_isAButtonPressed && m_answer != "A") || (m_isBButtonPressed && m_answer != "B")
                      || (m_isCButtonPressed && m_answer != "C") || (m_isDButtonPressed && m_answer != "D"))
             {
+                m_wrongSound.play();
+                //while (m_wrongSound.getStatus() == sf::Music::Playing);
+                sf::sleep(sf::seconds(0.8f));
                 m_lifeRemain -= 1;
                 if (m_level <= 1)
                     m_level = 1;
@@ -431,9 +447,8 @@ void GamePlay::Update(sf::Time deltaTime)
             }
             m_levelText.setString("Level : " + std::to_string(m_level));
             m_lifeText.setString("Life Remain : " + std::to_string(m_lifeRemain));
-            for (int i = 0; i < 100000000; i++)
-                continue;
             m_releaseQuestion = true;
+            m_isChoiceButtonPressed = false;
         }
 
         //std::cout << ' ' << time(NULL) << ' ' << m_startTime << '\n';

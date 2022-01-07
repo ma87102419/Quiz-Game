@@ -6,8 +6,9 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <fstream>
-#include<sstream>
+#include <sstream>
 #include <vector>
 #include <cstdlib>
 #include <chrono>
@@ -34,6 +35,11 @@ private:
     sf::Text m_lifeText;
     sf::Text m_welcomeUser;
     sf::Text m_timeRemainText;
+
+    sf::SoundBuffer wrongBuffer;
+    sf::Sound m_wrongSound;
+    sf::SoundBuffer correctBuffer;
+    sf::Sound m_correctSound;
 
     sf::Sprite m_first;
     sf::Sprite m_second;

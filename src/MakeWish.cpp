@@ -1,5 +1,6 @@
 #include "../include/MakeWish.h"
 #include "../include/MainMenu.h"
+#include "../include/Game.h"
 
 #include <SFML/Window/Event.hpp>
 #include <iostream>

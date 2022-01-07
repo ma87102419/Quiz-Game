@@ -55,6 +55,12 @@ void Game::Run()
     std::cout << (*m_context->m_userInfoVec).size() << '\n';
     //for (int i = 0; i < (*m_context->m_userInfoVec).size(); i++)
     //    std::cout << (*m_context->m_userInfoVec)[i].User << '\n';
+    if (!bgMusic.openFromFile("assets/music/NTU_song.ogg"))
+        std::cout << "ERROR" << '\n';
+    bgMusic.setVolume(30.f);
+    bgMusic.setPlayingOffset(sf::seconds(25.f));
+    bgMusic.setLoop(true);
+    bgMusic.play();
 
     while (m_context->m_window->isOpen())
     {

@@ -6,6 +6,7 @@
 
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include "State.h"
 #include "Game.h"
@@ -25,6 +26,8 @@ private:
     sf::Text m_wishText;
 
     sf::Sprite m_prof;
+
+    sf::Music wishMusic;
 
     bool m_isSubmitButtonSelected;
     bool m_isSubmitButtonPressed;

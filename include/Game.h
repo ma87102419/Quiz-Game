@@ -6,6 +6,7 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
+#include <SFML/Audio.hpp>
 
 #include "AssetMan.h"
 #include "StateMan.h"
@@ -67,6 +68,7 @@ private:
     std::shared_ptr<Context> m_context;
     std::string m_UserInfoFileName;
     const sf::Time TIME_PER_FRAME = sf::seconds(1.f/60.f);
+    sf::Music bgMusic;
 
 public:
     Game();
