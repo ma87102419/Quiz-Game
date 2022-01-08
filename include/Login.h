@@ -28,6 +28,7 @@ private:
     sf::Text m_pwd;
     sf::Text m_nameText;
     sf::Text m_pwdText;
+    sf::Text m_errorMsg; // error when the user typed the wrong username and/or password
 
     sf::RectangleShape m_userNameBox;
     sf::RectangleShape m_pwdBox;
@@ -47,8 +48,11 @@ private:
     bool m_isPwdBoxSelected;
     bool m_isPwdBoxPressed;
 
-    bool m_validUser;
+    bool m_validUser; // probably this can be used1
     int m_validUserIndex;
+
+    bool m_errorMsgShow; // decide whether errorMsg should be shown
+    int m_pressedCnt; // record number of time the login button is pressed
 
     std::string m_name;
     std::string m_password;

@@ -13,8 +13,8 @@ Login::Login(std::shared_ptr<Context> &context)
           m_isLoginButtonSelected(false), m_isLoginButtonPressed(false),
           m_isUserBoxSelected(false), m_isUserBoxPressed(false),
           m_isPwdBoxSelected(false), m_isPwdBoxPressed(false),
-          m_validUser(false),
-          m_name(""), m_password("")
+          m_validUser(false), m_errorMsgShow(false),
+          m_name(""), m_password(""), m_pressedCnt(0)
 {
 }
 
@@ -97,6 +97,17 @@ void Login::Init()
     m_loginButton.setPosition(m_context->m_window->getSize().x / 2,
                                    m_context->m_window->getSize().y / 2);
     m_loginButton.setCharacterSize(40);
+   
+    // error message load
+    m_errorMsg.setFont(m_context->m_assets->GetFont(MAIN_FONT));
+    m_errorMsg.setString(L"使用者名稱/密碼不正確");
+    m_errorMsg.setFillColor(sf::Color(255, 0, 0));
+    m_errorMsg.setOrigin(m_loginButton.getLocalBounds().width / 2,
+                         m_loginButton.getLocalBounds().height / 2);
+    m_errorMsg.setPosition(m_context->m_window->getSize().x / 2 ,
+                               m_context->m_window->getSize().y / 2 + 60.f);
+    m_errorMsg.setCharacterSize(20);
+
 
     m_backButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_backButton.setString(L"上一頁");
@@ -242,6 +253,7 @@ void Login::ProcessInput()
             m_isBackButtonPressed = false;
             m_isUserBoxPressed = false;
             m_isPwdBoxPressed = false;
+ 
         }
         else if (IsTextClicked(m_backButton, sf::Mouse::Left))
         {
@@ -372,9 +384,12 @@ void Login::Update(sf::Time deltaTime)
         }
         else
         {
-            m_context->m_states->PopCurrent();
-            *m_context->m_currUserindex = -1;
-            m_context->m_states->Add(std::make_unique<Welcome>(m_context));
+        //{
+         //   m_context->m_states->PopCurrent();
+          //  *m_context->m_currUserindex = -1;
+           // m_context->m_states->Add(std::make_unique<Welcome>(m_context));
+            m_pressedCnt++;
+            m_errorMsgShow = true;
         }
 
     }
@@ -408,6 +423,8 @@ void Login::Draw()
     m_context->m_window->draw(m_pwdBox);
     m_context->m_window->draw(m_nameText);
     m_context->m_window->draw(m_pwdText);
+    if(m_pressedCnt > 0 && m_errorMsgShow == true) // error message is drawn when specific condition is satisfied
+        m_context->m_window->draw(m_errorMsg);
     m_context->m_window->display();
 }
 
