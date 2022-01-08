@@ -444,7 +444,7 @@ void GamePlay::Update(sf::Time deltaTime)
             {
                 m_wrongSound.play();
                 //while (m_wrongSound.getStatus() == sf::Music::Playing);
-                sf::sleep(sf::seconds(0.8f));
+                sf::sleep(sf::seconds(0.3f)); // second
                 m_lifeRemain -= 1;
                 if (m_level <= 1)
                     m_level = 1;
