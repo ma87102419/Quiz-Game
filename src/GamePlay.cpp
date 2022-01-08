@@ -436,7 +436,7 @@ void GamePlay::Update(sf::Time deltaTime)
             {
                 m_correctSound.play();
                 //while (m_correctSound.getStatus() == sf::Music::Playing);
-                sf::sleep(sf::seconds(0.8f));
+                sf::sleep(sf::seconds(0.3f));
                 m_level += 1;
             }
             else if ((m_isAButtonPressed && m_answer != "A") || (m_isBButtonPressed && m_answer != "B")

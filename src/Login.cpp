@@ -412,7 +412,7 @@ void Login::Update(sf::Time deltaTime)
 
 void Login::Draw()
 {
-    m_context->m_window->clear(sf::Color::Blue);
+    m_context->m_window->clear(sf::Color(102, 178, 255));
     m_context->m_window->draw(m_loginTitle);
     m_context->m_window->draw(m_returnMenuButton);
     m_context->m_window->draw(m_loginButton);

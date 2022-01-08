@@ -20,6 +20,9 @@ private:
     sf::Text m_rankButton;
     sf::Text m_introButton;
     sf::Text m_exitButton;
+    // sf texture
+    sf::Texture m_bgImage; // background image
+    sf::Sprite m_bgIamgeDraw; // texture to sprite
 
     bool m_isPlayButtonSelected;
     bool m_isPlayButtonPressed;

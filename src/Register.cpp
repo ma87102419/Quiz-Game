@@ -424,7 +424,7 @@ void Register::Update(sf::Time deltaTime)
 
 void Register::Draw()
 {
-    m_context->m_window->clear(sf::Color::Blue);
+    m_context->m_window->clear(sf::Color(102, 178, 255));
     m_context->m_window->draw(m_registerTitle);
     m_context->m_window->draw(m_returnMenuButton);
     m_context->m_window->draw(m_registerButton);
