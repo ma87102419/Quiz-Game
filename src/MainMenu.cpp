@@ -4,6 +4,7 @@
 #include "../include/Welcome.h"
 #include "../include/MakeWish.h"
 
+
 #include <SFML/Window/Event.hpp>
 #include <cmath>
 #include<iostream>
@@ -241,7 +242,7 @@ void MainMenu::Update(sf::Time deltaTime)
     else if (m_isIntroButtonPressed)
     {
         m_context->m_states->PopCurrent();
-        m_context->m_states->Add(std::make_unique<MakeWish>(m_context), true);
+        m_context->m_states->Add(std::make_unique<Introduction>(m_context), true);
     }
     else if(m_isExitButtonPressed)
         m_context->m_window->close();

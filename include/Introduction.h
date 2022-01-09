@@ -16,6 +16,9 @@ private:
     std::shared_ptr<Context> m_context;
     sf::Text m_introTitle;
     sf::Text m_returnMenuButton;
+    //sf::Text m_firstLine;
+    sf::Texture m_bgImage; // background image
+    sf::Sprite m_bgIamgeDraw; // texture to sprite
 
     bool m_isReturnMenuButtonSelected;
     bool m_isReturnMenuButtonPressed;

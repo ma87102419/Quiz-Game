@@ -1,6 +1,6 @@
 #include "../include/Ranking.h"
 #include "../include/MainMenu.h"
-
+#include<iostream>
 #include <SFML/Window/Event.hpp>
 
 Ranking::Ranking(std::shared_ptr<Context> &context)
@@ -38,6 +38,7 @@ void Ranking::Init()
     // Title
     m_rankingTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_rankingTitle.setString(L"願望清單");
+    m_rankingTitle.setFillColor(sf::Color::Black);
     m_rankingTitle.setOrigin(m_rankingTitle.getLocalBounds().width / 2,
                              m_rankingTitle.getLocalBounds().height / 2);
     m_rankingTitle.setPosition(m_context->m_window->getSize().x / 2,
@@ -45,11 +46,16 @@ void Ranking::Init()
     // Buttons
     m_returnMenuButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_returnMenuButton.setString(L"回到主選單");
+    m_returnMenuButton.setFillColor(sf::Color::Black);
     m_returnMenuButton.setOrigin(m_returnMenuButton.getLocalBounds().width / 2,
                                  m_returnMenuButton.getLocalBounds().height / 2);
     m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2,
                                    m_context->m_window->getSize().y / 2 + 50.f);
 
+    // load texture and sprite
+    if (!m_bgImage.loadFromFile("assets/background/original_light_new.jpg"))// background image
+        std::cout << "no data exists!";
+    m_bgIamgeDraw.setTexture(m_bgImage);
 
 }
 
@@ -78,7 +84,7 @@ void Ranking::ProcessInput()
 void Ranking::Update(sf::Time deltaTime)
 {
     if (m_isReturnMenuButtonSelected)
-        m_returnMenuButton.setFillColor(sf::Color::White);
+        m_returnMenuButton.setFillColor(sf::Color(121, 2, 2));
     else
     {
         m_returnMenuButton.setFillColor(sf::Color::Black);
@@ -93,7 +99,8 @@ void Ranking::Update(sf::Time deltaTime)
 
 void Ranking::Draw()
 {
-    m_context->m_window->clear(sf::Color::Blue);
+    m_context->m_window->clear();
+    m_context->m_window->draw(m_bgIamgeDraw);
     m_context->m_window->draw(m_rankingTitle);
     m_context->m_window->draw(m_returnMenuButton);
     m_context->m_window->display();
