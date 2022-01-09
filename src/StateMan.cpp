@@ -24,7 +24,6 @@ void Engine::StateMan::PopCurrent()
 
 void Engine::StateMan::ProcessStateChange()
 {
-    // stack is not empty
     if(m_remove && (!m_stateStack.empty()))
     {
         m_stateStack.pop();

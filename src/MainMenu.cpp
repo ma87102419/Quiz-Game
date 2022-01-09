@@ -4,10 +4,8 @@
 #include "../include/Welcome.h"
 #include "../include/MakeWish.h"
 
-
 #include <SFML/Window/Event.hpp>
 #include <cmath>
-#include<iostream>
 
 
 MainMenu::MainMenu(std::shared_ptr<Context> &context)
@@ -50,7 +48,6 @@ void MainMenu::Init()
     // Title
     m_gameTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_gameTitle.setString(L"台大知識王");
-    m_gameTitle.setFillColor(sf::Color::Black);
     m_gameTitle.setOrigin(m_gameTitle.getLocalBounds().width / 2,
                           m_gameTitle.getLocalBounds().height / 2);
     m_gameTitle.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
@@ -60,7 +57,6 @@ void MainMenu::Init()
     // Play Button
     m_playButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_playButton.setString(L"開始遊戲");
-    m_playButton.setFillColor(sf::Color::Black); // change color of the text
     m_playButton.setOrigin(m_playButton.getLocalBounds().width / 2,
                            m_playButton.getLocalBounds().height / 2);
     m_playButton.setPosition(m_context->m_window->getSize().x / 2,
@@ -70,7 +66,6 @@ void MainMenu::Init()
     // Ranking Button
     m_rankButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_rankButton.setString(L"願望清單");
-    m_rankButton.setFillColor(sf::Color::Black);
     m_rankButton.setOrigin(m_rankButton.getLocalBounds().width / 2,
                            m_rankButton.getLocalBounds().height / 2);
     m_rankButton.setPosition(m_context->m_window->getSize().x / 2,
@@ -80,7 +75,6 @@ void MainMenu::Init()
     // Intro Button
     m_introButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_introButton.setString(L"遊戲介紹");
-    m_introButton.setFillColor(sf::Color::Black);
     m_introButton.setOrigin(m_introButton.getLocalBounds().width / 2,
                            m_introButton.getLocalBounds().height / 2);
     m_introButton.setPosition(m_context->m_window->getSize().x / 2 - 10.f,
@@ -90,17 +84,11 @@ void MainMenu::Init()
     // Exit Button
     m_exitButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_exitButton.setString(L"退出遊戲");
-    m_exitButton.setFillColor(sf::Color::Black);
     m_exitButton.setOrigin(m_exitButton.getLocalBounds().width / 2,
                            m_exitButton.getLocalBounds().height / 2);
     m_exitButton.setPosition(m_context->m_window->getSize().x / 2,
                              m_context->m_window->getSize().y / 2 + 75.f);
     m_exitButton.setCharacterSize(40);
-
-    // load image
-    if (!m_bgImage.loadFromFile("assets/background/original_light_new.jpg"))// background image
-        std::cout << "no data exists!"; 
-    m_bgIamgeDraw.setTexture(m_bgImage);
 }
 
 
@@ -195,38 +183,38 @@ void MainMenu::Update(sf::Time deltaTime)
 {
     if(m_isPlayButtonSelected)
     {
-        m_playButton.setFillColor(sf::Color(121,2,2));// dark red
-        m_rankButton.setFillColor(sf::Color::Black);
-        m_introButton.setFillColor(sf::Color::Black);
-        m_exitButton.setFillColor(sf::Color::Black);
+        m_playButton.setFillColor(sf::Color::Black);
+        m_rankButton.setFillColor(sf::Color::White);
+        m_introButton.setFillColor(sf::Color::White);
+        m_exitButton.setFillColor(sf::Color::White);
     }
     else if (m_isRankButtonSelected)
     {
-        m_playButton.setFillColor(sf::Color::Black);
-        m_rankButton.setFillColor(sf::Color(121, 2, 2));
-        m_introButton.setFillColor(sf::Color::Black);
-        m_exitButton.setFillColor(sf::Color::Black);
+        m_playButton.setFillColor(sf::Color::White);
+        m_rankButton.setFillColor(sf::Color::Black);
+        m_introButton.setFillColor(sf::Color::White);
+        m_exitButton.setFillColor(sf::Color::White);
     }
     else if (m_isIntroButtonSelected)
     {
-        m_playButton.setFillColor(sf::Color::Black);
-        m_rankButton.setFillColor(sf::Color::Black);
-        m_introButton.setFillColor(sf::Color(121, 2, 2));
-        m_exitButton.setFillColor(sf::Color::Black);
+        m_playButton.setFillColor(sf::Color::White);
+        m_rankButton.setFillColor(sf::Color::White);
+        m_introButton.setFillColor(sf::Color::Black);
+        m_exitButton.setFillColor(sf::Color::White);
     }
     else if (m_isExitButtonSelected)
     {
-        m_playButton.setFillColor(sf::Color::Black);
-        m_rankButton.setFillColor(sf::Color::Black);
-        m_introButton.setFillColor(sf::Color::Black);
-        m_exitButton.setFillColor(sf::Color(121, 2, 2));
+        m_playButton.setFillColor(sf::Color::White);
+        m_rankButton.setFillColor(sf::Color::White);
+        m_introButton.setFillColor(sf::Color::White);
+        m_exitButton.setFillColor(sf::Color::Black);
     }
     else
     {
-        m_playButton.setFillColor(sf::Color::Black);
-        m_rankButton.setFillColor(sf::Color::Black);
-        m_introButton.setFillColor(sf::Color::Black);
-        m_exitButton.setFillColor(sf::Color::Black);
+        m_playButton.setFillColor(sf::Color::White);
+        m_rankButton.setFillColor(sf::Color::White);
+        m_introButton.setFillColor(sf::Color::White);
+        m_exitButton.setFillColor(sf::Color::White);
     }
 
     if(m_isPlayButtonPressed)
@@ -242,7 +230,7 @@ void MainMenu::Update(sf::Time deltaTime)
     else if (m_isIntroButtonPressed)
     {
         m_context->m_states->PopCurrent();
-        m_context->m_states->Add(std::make_unique<Introduction>(m_context), true);
+        m_context->m_states->Add(std::make_unique<MakeWish>(m_context), true);
     }
     else if(m_isExitButtonPressed)
         m_context->m_window->close();
@@ -251,8 +239,7 @@ void MainMenu::Update(sf::Time deltaTime)
 
 void MainMenu::Draw()
 {
-    m_context->m_window->clear();
-    m_context->m_window->draw(m_bgIamgeDraw);
+    m_context->m_window->clear(sf::Color::Blue);
     m_context->m_window->draw(m_gameTitle);
     m_context->m_window->draw(m_playButton);
     m_context->m_window->draw(m_rankButton);

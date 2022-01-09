@@ -195,7 +195,7 @@ void Welcome::Update(sf::Time deltaTime)
 
 void Welcome::Draw()
 {
-    m_context->m_window->clear(sf::Color(102, 178, 255));
+    m_context->m_window->clear(sf::Color{102, 178, 255});
     m_context->m_window->draw(m_welcomeTitle);
     m_context->m_window->draw(m_loginButton);
     m_context->m_window->draw(m_registerButton);

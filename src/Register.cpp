@@ -14,7 +14,7 @@ Register::Register(std::shared_ptr<Context> &context)
           m_isRegisterButtonSelected(false), m_isRegisterButtonPressed(false),
           m_isUserBoxSelected(false), m_isUserBoxPressed(false),
           m_isPwdBoxSelected(false), m_isPwdBoxPressed(false),
-          m_name(""), m_password(""), m_showErrorMsg(false),
+          m_name(""), m_password(""),
           m_validUser(true)
 {
 }
@@ -99,17 +99,6 @@ void Register::Init()
                               m_context->m_window->getSize().y / 2);
     m_registerButton.setCharacterSize(40);
 
-    // error message
-    m_errorMsg.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_errorMsg.setFillColor(sf::Color(255, 0, 0));
-    m_errorMsg.setString(L"此帳號已被註冊過");
-    m_errorMsg.setOrigin(m_errorMsg.getLocalBounds().width / 2,
-                         m_errorMsg.getLocalBounds().height / 2);
-    m_errorMsg.setPosition(m_context->m_window->getSize().x / 2,
-        m_context->m_window->getSize().y / 2 + 60.f);
-    m_errorMsg.setCharacterSize(20);
-
-    // back button
     m_backButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_backButton.setString(L"上一頁");
     m_backButton.setOrigin(m_backButton.getLocalBounds().width / 2,
@@ -310,7 +299,6 @@ void Register::ProcessInput()
         if (m_name == (*m_context->m_userInfoVec)[i].User)
         {
             m_validUser = false;
-       
             break;
         }
     }
@@ -398,12 +386,9 @@ void Register::Update(sf::Time deltaTime)
             tmp_info.BannedTime = 0;
             (*m_context->m_userInfoVec).push_back(tmp_info);
             *m_context->m_currUserindex = (*m_context->m_userInfoVec).size() - 1;
-            m_context->m_states->PopCurrent(); // move
-            m_context->m_states->Add(std::make_unique<InternalWelcome>(m_context)); //move
         }
-        else
-            m_showErrorMsg = true;
-        
+        m_context->m_states->PopCurrent();
+        m_context->m_states->Add(std::make_unique<InternalWelcome>(m_context));
     }
     else if (m_isUserBoxPressed)
     {
@@ -424,7 +409,7 @@ void Register::Update(sf::Time deltaTime)
 
 void Register::Draw()
 {
-    m_context->m_window->clear(sf::Color(102, 178, 255));
+    m_context->m_window->clear(sf::Color::Blue);
     m_context->m_window->draw(m_registerTitle);
     m_context->m_window->draw(m_returnMenuButton);
     m_context->m_window->draw(m_registerButton);
@@ -435,8 +420,6 @@ void Register::Draw()
     m_context->m_window->draw(m_pwdBox);
     m_context->m_window->draw(m_nameText);
     m_context->m_window->draw(m_pwdText);
-    if(m_showErrorMsg)
-        m_context->m_window->draw(m_errorMsg);
     m_context->m_window->display();
 }
 
