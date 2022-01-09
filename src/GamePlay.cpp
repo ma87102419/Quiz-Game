@@ -374,6 +374,22 @@ void GamePlay::Update(sf::Time deltaTime)
             m_totalNumAnswered += 1;
         }
 
+        //std::cout << ' ' << time(NULL) << ' ' << m_startTime << '\n';
+        time_t timeElapsed = time(NULL) - m_startTime;
+        time_t timeRemain = 10 - timeElapsed;
+        m_timeRemainText.setString(std::to_string(timeRemain));
+        if (timeRemain <= 0)
+        {
+            m_lifeRemain -= 1;
+            if (m_level <= 1)
+                m_level = 1;
+            else
+                m_level -= 1;
+            m_releaseQuestion = true;
+            (*m_context->m_userInfoVec)[*m_context->m_currUserindex].TimeUsed += static_cast<int>(timeElapsed);
+            m_levelText.setString("Level : " + std::to_string(m_level));
+            m_lifeText.setString("Life Remain : " + std::to_string(m_lifeRemain));
+        }
 
         // Color the buttons
         if(m_isAButtonSelected)
@@ -460,23 +476,8 @@ void GamePlay::Update(sf::Time deltaTime)
             m_isDButtonPressed = false;
             m_isPausePressed = false;
             m_isChoiceButtonPressed = false;
+            (*m_context->m_userInfoVec)[*m_context->m_currUserindex].TimeUsed += static_cast<int>(timeElapsed);
         }
-
-        //std::cout << ' ' << time(NULL) << ' ' << m_startTime << '\n';
-        time_t timeRemain = 10 - (time(NULL) - m_startTime);
-        m_timeRemainText.setString(std::to_string(timeRemain));
-        if (timeRemain <= 0)
-        {
-            m_lifeRemain -= 1;
-            if (m_level <= 1)
-                m_level = 1;
-            else
-                m_level -= 1;
-            m_releaseQuestion = true;
-            m_levelText.setString("Level : " + std::to_string(m_level));
-            m_lifeText.setString("Life Remain : " + std::to_string(m_lifeRemain));
-        }
-        // TODO: Level updates
     }
     else
         m_context->m_states->Add(std::make_unique<PauseGame>(m_context));

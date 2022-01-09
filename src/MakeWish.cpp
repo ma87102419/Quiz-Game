@@ -187,6 +187,7 @@ void MakeWish::Update(sf::Time deltaTime)
 
     if (m_isSubmitButtonPressed)
     {
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].Wish = m_wish;
         m_context->m_states->PopCurrent();
         m_context->m_states->Add(std::make_unique<MainMenu>(m_context));
     }
@@ -194,7 +195,7 @@ void MakeWish::Update(sf::Time deltaTime)
     {
         m_wishBox.setOutlineColor(sf::Color::Black);
         m_wishText.setString(m_wish);
-        std::cout << m_wish << '\n';
+        //std::cout << m_wish << '\n';
     }
 
 }

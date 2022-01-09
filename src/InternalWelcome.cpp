@@ -170,6 +170,7 @@ void InternalWelcome::Update(sf::Time deltaTime)
 
     if (m_isStartButtonPressed)
     {
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].TimeUsed = 0;
         m_context->m_states->PopCurrent();
         m_context->m_states->Add(std::make_unique<GamePlay>(m_context));
     }

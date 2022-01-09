@@ -1,10 +1,33 @@
 #include <SFML/Graphics/CircleShape.hpp>
 #include <typeinfo>
+#include <regex>
 
 #include "../include/Game.h"
 #include "../include/MainMenu.h"
 #include "../include/MakeWish.h"
 #include <iostream>
+
+
+std::string Game::replaceAll(std::string str, const std::string from, const std::string to) {
+    if(from.empty())
+        return str;
+    size_t start_pos = 0;
+    while((start_pos = str.find(from, start_pos)) != std::string::npos) {
+        str.replace(start_pos, from.length(), to);
+        start_pos += to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
+    }
+    return str;
+}
+
+std::string Game::enc_spaces(std::string s)
+{
+    return replaceAll(s, " ", "|");
+}
+
+std::string Game::dec_spaces(std::string s)
+{
+    return replaceAll(s, "|", " ");
+}
 
 
 Game::Game() : m_context(std::make_shared<Context>()), m_UserInfoFileName("assets/Info/user_info_utf8.txt")
@@ -22,10 +45,18 @@ Game::~Game()
     for (int i = 0; i < (*m_context->m_userInfoVec).size(); i++)
     {
         struct UserInfo tmp_info = (*m_context->m_userInfoVec)[i];
-        OutputFile << tmp_info.User << ' ' << tmp_info.Pwd << ' ' << tmp_info.CompleteStatus << ' '
-                   << tmp_info.TotalQuesAnswered << ' ' << tmp_info.TimeUsed << ' ' << tmp_info.Life << ' '
-                   << tmp_info.CurrentLv << ' ' << tmp_info.AccountStatus << ' ' << tmp_info.Wish << ' '
-                   << tmp_info.WishStatus << ' ' << tmp_info.BannedStatus << ' ' << tmp_info.BannedTime << '\n';
+        OutputFile << enc_spaces(tmp_info.User) << ' ' 
+                   << enc_spaces(tmp_info.Pwd) << ' '
+                   << tmp_info.CompleteStatus << ' '
+                   << tmp_info.TotalQuesAnswered << ' '
+                   << tmp_info.TimeUsed << ' '
+                   << tmp_info.Life << ' '
+                   << tmp_info.CurrentLv << ' '
+                   << tmp_info.AccountStatus << ' '
+                   << enc_spaces(tmp_info.Wish) << ' '
+                   << tmp_info.WishStatus << ' '
+                   << tmp_info.BannedStatus << ' '
+                   << tmp_info.BannedTime << '\n';
     }
     OutputFile.close();
 
@@ -46,11 +77,22 @@ void Game::Run()
     if(InputFile)
     {
         struct UserInfo tmp_info;
-        while(InputFile >> tmp_info.User >>  tmp_info.Pwd >> tmp_info.CompleteStatus
-                >> tmp_info.TotalQuesAnswered >> tmp_info.TimeUsed >> tmp_info.Life
-                >> tmp_info.CurrentLv >> tmp_info.AccountStatus >> tmp_info.Wish
-                >> tmp_info.WishStatus >> tmp_info.BannedStatus >> tmp_info.BannedTime)
+        while(InputFile >> tmp_info.User
+                        >> tmp_info.Pwd
+                        >> tmp_info.CompleteStatus 
+                        >> tmp_info.TotalQuesAnswered 
+                        >> tmp_info.TimeUsed 
+                        >> tmp_info.Life
+                        >> tmp_info.CurrentLv 
+                        >> tmp_info.AccountStatus 
+                        >> tmp_info.Wish
+                        >> tmp_info.WishStatus 
+                        >> tmp_info.BannedStatus 
+                        >> tmp_info.BannedTime)
         {
+            tmp_info.User = dec_spaces(tmp_info.User);
+            tmp_info.Pwd = dec_spaces(tmp_info.Pwd);
+            tmp_info.Wish = dec_spaces(tmp_info.Wish);
             (*m_context->m_userInfoVec).push_back(tmp_info);
         }
     }

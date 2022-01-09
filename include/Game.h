@@ -70,6 +70,9 @@ private:
     const sf::Time TIME_PER_FRAME = sf::seconds(1.f/60.f);
     sf::Music bgMusic;
     sf::Music wishMusic;
+    std::string replaceAll(std::string str, const std::string from, const std::string to);
+    std::string enc_spaces(std::string s);
+    std::string dec_spaces(std::string s);
 
 public:
     Game();
