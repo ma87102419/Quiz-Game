@@ -28,6 +28,7 @@ private:
     sf::Text m_pwd;
     sf::Text m_nameText;
     sf::Text m_pwdText;
+    sf::Text m_errorMsg; // error message when there is already the same username
 
     sf::RectangleShape m_userNameBox;
     sf::RectangleShape m_pwdBox;
@@ -48,6 +49,8 @@ private:
     bool m_isPwdBoxPressed;
 
     bool m_validUser;
+    bool m_showErrorMsg; // state whether the error message should be shown
+
     int m_validUserIndex;
     int m_allUser;
 
