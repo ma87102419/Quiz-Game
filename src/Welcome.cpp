@@ -80,6 +80,14 @@ void Welcome::Init()
                               m_context->m_window->getSize().y / 2);
     m_returnMenuButton.setCharacterSize(40);
 
+    // ntu emblem draw
+    if (!m_ntuEmblem.loadFromFile("assets/background/Emblem72.png"))// background image
+        std::cout << "no data exists!";
+    m_ntuEmblemDraw.setTexture(m_ntuEmblem);
+    m_ntuEmblemDraw.setPosition(m_context->m_window->getSize().x / 2 + 260.f,
+        m_context->m_window->getSize().y / 2 - 300.f);
+
+
 }
 
 
@@ -199,6 +207,7 @@ void Welcome::Draw()
     m_context->m_window->draw(m_welcomeTitle);
     m_context->m_window->draw(m_loginButton);
     m_context->m_window->draw(m_registerButton);
+    m_context->m_window->draw(m_ntuEmblemDraw);
     m_context->m_window->draw(m_returnMenuButton);
     m_context->m_window->display();
 }

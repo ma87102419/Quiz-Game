@@ -29,6 +29,10 @@ private:
 
     sf::Music wishMusic;
 
+    // sf texture
+    sf::Texture m_bgImage; // background image
+    sf::Sprite m_bgIamgeDraw; // texture to sprite
+
     bool m_isSubmitButtonSelected;
     bool m_isSubmitButtonPressed;
 

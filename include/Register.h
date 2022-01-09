@@ -33,6 +33,9 @@ private:
     sf::RectangleShape m_userNameBox;
     sf::RectangleShape m_pwdBox;
 
+    sf::Texture m_ntuEmblem; // background image
+    sf::Sprite m_ntuEmblemDraw; // texture to sprite
+
     bool m_isReturnMenuButtonSelected;
     bool m_isReturnMenuButtonPressed;
 

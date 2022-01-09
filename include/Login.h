@@ -30,6 +30,9 @@ private:
     sf::Text m_pwdText;
     sf::Text m_errorMsg; // error when the user typed the wrong username and/or password
 
+    sf::Texture m_ntuEmblem; // background image
+    sf::Sprite m_ntuEmblemDraw; // texture to sprite
+
     sf::RectangleShape m_userNameBox;
     sf::RectangleShape m_pwdBox;
 
