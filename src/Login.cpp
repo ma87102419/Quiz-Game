@@ -303,14 +303,6 @@ void Login::ProcessInput()
             }
         }
     }
-    for (int i = 0; i < (*m_context->m_userInfoVec).size(); i++)
-        if (m_name == (*m_context->m_userInfoVec)[i].User
-            && m_password == (*m_context->m_userInfoVec)[i].Pwd)
-        {
-            m_validUser = true;
-            m_validUserIndex = i;
-            break;
-        }
 }
 
 void Login::Update(sf::Time deltaTime)
@@ -376,6 +368,14 @@ void Login::Update(sf::Time deltaTime)
     }
     else if (m_isLoginButtonPressed) // TODO &&...check valid user
     {
+        for (int i = 0; i < (*m_context->m_userInfoVec).size(); i++)
+            if (m_name == (*m_context->m_userInfoVec)[i].User
+                && m_password == (*m_context->m_userInfoVec)[i].Pwd)
+            {
+                m_validUser = true;
+                m_validUserIndex = i;
+                break;
+            }
         if (m_validUser)
         {
             m_context->m_states->PopCurrent();
