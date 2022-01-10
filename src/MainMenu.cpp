@@ -83,7 +83,7 @@ void MainMenu::Init()
     m_introButton.setFillColor(sf::Color::Black);
     m_introButton.setOrigin(m_introButton.getLocalBounds().width / 2,
                            m_introButton.getLocalBounds().height / 2);
-    m_introButton.setPosition(m_context->m_window->getSize().x / 2 - 10.f,
+    m_introButton.setPosition(m_context->m_window->getSize().x / 2 - 5.f,
                              m_context->m_window->getSize().y / 2);
     m_introButton.setCharacterSize(40);
 

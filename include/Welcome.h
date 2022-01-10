@@ -18,6 +18,9 @@ private:
     sf::Text m_registerButton;
     sf::Text m_returnMenuButton;
 
+    sf::Texture m_ntuEmblem; // background image
+    sf::Sprite m_ntuEmblemDraw; // texture to sprite
+
     bool m_isLoginButtonSelected;
     bool m_isLoginButtonPressed;
 
