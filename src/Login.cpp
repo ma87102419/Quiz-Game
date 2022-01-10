@@ -3,6 +3,7 @@
 #include "../include/Welcome.h"
 #include "../include/InternalWelcome.h"
 #include<iostream>
+#include <ctime>
 
 #include <SFML/Window/Event.hpp>
 
@@ -102,7 +103,7 @@ void Login::Init()
    
     // error message load
     m_errorMsg.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_errorMsg.setString(L"使用者名稱/密碼不正確");
+    //m_errorMsg.setString(L"使用者名稱/密碼不正確");
     m_errorMsg.setFillColor(sf::Color(255, 0, 0));
     m_errorMsg.setOrigin(m_loginButton.getLocalBounds().width / 2,
                          m_loginButton.getLocalBounds().height / 2);
@@ -387,9 +388,10 @@ void Login::Update(sf::Time deltaTime)
             {
                 m_validUser = true;
                 m_validUserIndex = i;
+                m_aliveUser = (time(NULL) - (*m_context->m_userInfoVec)[i].BannedTime >= 300);
                 break;
             }
-        if (m_validUser)
+        if (m_validUser && m_aliveUser)
         {
             m_context->m_states->PopCurrent();
             *m_context->m_currUserindex = m_validUserIndex;
@@ -397,12 +399,12 @@ void Login::Update(sf::Time deltaTime)
         }
         else
         {
-        //{
-         //   m_context->m_states->PopCurrent();
-          //  *m_context->m_currUserindex = -1;
-           // m_context->m_states->Add(std::make_unique<Welcome>(m_context));
-            m_pressedCnt++;
+            //m_pressedCnt++;
             m_errorMsgShow = true;
+            if (!m_validUser)
+                m_errorMsg.setString(L"使用者名稱/密碼不正確");
+            else
+                m_errorMsg.setString(L"請稍等再進入遊戲");
         }
 
     }
@@ -437,7 +439,7 @@ void Login::Draw()
     m_context->m_window->draw(m_pwdBox);
     m_context->m_window->draw(m_nameText);
     m_context->m_window->draw(m_pwdText);
-    if(m_pressedCnt > 0 && m_errorMsgShow == true) // error message is drawn when specific condition is satisfied
+    if(m_errorMsgShow == true) // error message is drawn when specific condition is satisfied
         m_context->m_window->draw(m_errorMsg);
     m_context->m_window->display();
 }
