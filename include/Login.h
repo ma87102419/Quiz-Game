@@ -52,7 +52,6 @@ private:
     bool m_isPwdBoxPressed;
 
     bool m_validUser; // probably this can be used
-    bool m_aliveUser;
     int m_validUserIndex;
 
     bool m_errorMsgShow; // decide whether errorMsg should be shown

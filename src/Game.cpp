@@ -72,6 +72,10 @@ void Game::Run()
     sf::Clock clock;
     sf::Time timeSinceLastFrame = sf::Time::Zero;
 
+    sf::Image icon;
+    icon.loadFromFile("assets/textures/window_icon.jpg");
+    m_context->m_window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+
     std::ifstream InputFile;
     InputFile.open(m_UserInfoFileName);
     if(InputFile)
@@ -120,6 +124,7 @@ void Game::Run()
             {
                 bgMusic.stop();
                 wishMusic.setVolume(30.f);
+                wishMusic.setPlayingOffset(sf::seconds(2.0f));
                 wishMusic.setLoop(true);
                 wishMusic.play();
             }

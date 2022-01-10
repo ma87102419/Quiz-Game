@@ -523,7 +523,7 @@ void GamePlay::Draw()
     m_context->m_window->draw(m_bButton);
     m_context->m_window->draw(m_cButton);
     m_context->m_window->draw(m_dButton);
-    m_context->m_window->draw(m_pauseButton);
+    //m_context->m_window->draw(m_pauseButton);
     m_context->m_window->draw(m_welcomeUser);
     m_context->m_window->draw(m_levelText);
     m_context->m_window->draw(m_lifeText);

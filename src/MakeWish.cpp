@@ -73,6 +73,7 @@ void MakeWish::Init()
     // Title
     m_makeWishTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_makeWishTitle.setString(L"恭喜！許個願吧！");
+    m_makeWishTitle.setFillColor(sf::Color::Black);
     m_makeWishTitle.setOrigin(m_makeWishTitle.getLocalBounds().width / 2,
                               m_makeWishTitle.getLocalBounds().height / 2);
     m_makeWishTitle.setPosition(m_context->m_window->getSize().x / 2 - 160.f,
@@ -81,6 +82,7 @@ void MakeWish::Init()
     // Buttons
     m_submitButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_submitButton.setString(L"送出");
+    m_submitButton.setFillColor(sf::Color::Black);
     m_submitButton.setOrigin(m_submitButton.getLocalBounds().width / 2,
                              m_submitButton.getLocalBounds().height / 2);
     m_submitButton.setPosition(m_context->m_window->getSize().x / 2 - 40.f,
@@ -89,7 +91,7 @@ void MakeWish::Init()
     // Textboxes
     m_wishBox.setSize(sf::Vector2f(800, 400));
     m_wishBox.setFillColor(sf::Color::White);
-    m_wishBox.setOutlineThickness(2);
+    m_wishBox.setOutlineThickness(4);
     m_wishBox.setOrigin(m_wishBox.getLocalBounds().width / 2,
                         m_wishBox.getLocalBounds().height / 2);
     m_wishBox.setPosition(m_context->m_window->getSize().x / 2,
@@ -174,18 +176,18 @@ void MakeWish::Update(sf::Time deltaTime)
 {
     if (m_isSubmitButtonSelected)
     {
-        m_submitButton.setFillColor(sf::Color::Black);
-        m_wishBox.setOutlineColor(sf::Color::White);
+        m_submitButton.setFillColor(sf::Color(121,2,2));
+        m_wishBox.setOutlineColor(sf::Color::Black);
     }
     else if (m_isWishBoxSelected)
     {
-        m_submitButton.setFillColor(sf::Color::White);
-        m_wishBox.setOutlineColor(sf::Color::Black);
+        m_submitButton.setFillColor(sf::Color::Black);
+        m_wishBox.setOutlineColor(sf::Color(121,2,2));
     }
     else
     {
-        m_submitButton.setFillColor(sf::Color::White);
-        m_wishBox.setOutlineColor(sf::Color::White);
+        m_submitButton.setFillColor(sf::Color::Black);
+        m_wishBox.setOutlineColor(sf::Color::Black);
     }
 
     if (m_isSubmitButtonPressed)

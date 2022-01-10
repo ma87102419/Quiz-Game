@@ -81,7 +81,7 @@ void InternalWelcome::Init()
 
     // error message
     m_bannedMsg.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_bannedMsg.setString(L"目前不可玩遊戲");
+    //m_bannedMsg.setString(L"目前不可玩遊戲");
     m_bannedMsg.setFillColor(sf::Color::Red);
     m_bannedMsg.setOrigin(m_logoutButton.getLocalBounds().width / 2,
         m_logoutButton.getLocalBounds().height / 2);
@@ -187,6 +187,12 @@ void InternalWelcome::Update(sf::Time deltaTime)
             time(nullptr) - (*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedTime < 30) // TODO: make it a memebr variable
         {
             showBannedMsg = true;
+            sf::String bannedText = L"再 ";
+            bannedText += std::to_string(30 - (time(nullptr) - (*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedTime));
+            bannedText += L" 秒後才能繼續遊戲！";
+
+            m_bannedMsg.setString(bannedText);
+
         }
         else
         {
@@ -206,7 +212,7 @@ void InternalWelcome::Update(sf::Time deltaTime)
     else if (m_isLogoutButtonPressed) // TODO &&...check valid user
     {
         m_context->m_states->PopCurrent();
-        m_context->m_states->Add(std::make_unique<Welcome>(m_context));
+        m_context->m_states->Add(std::make_unique<InternalWelcome>(m_context));
     }
 
 }

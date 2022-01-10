@@ -388,10 +388,9 @@ void Login::Update(sf::Time deltaTime)
             {
                 m_validUser = true;
                 m_validUserIndex = i;
-                m_aliveUser = (time(NULL) - (*m_context->m_userInfoVec)[i].BannedTime >= 300);
                 break;
             }
-        if (m_validUser && m_aliveUser)
+        if (m_validUser)
         {
             m_context->m_states->PopCurrent();
             *m_context->m_currUserindex = m_validUserIndex;
@@ -403,8 +402,6 @@ void Login::Update(sf::Time deltaTime)
             m_errorMsgShow = true;
             if (!m_validUser)
                 m_errorMsg.setString(L"使用者名稱/密碼不正確");
-            else
-                m_errorMsg.setString(L"請稍等再進入遊戲");
         }
 
     }
