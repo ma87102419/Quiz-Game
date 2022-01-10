@@ -9,6 +9,7 @@
 
 #include <stdlib.h>
 #include <cmath>
+#include<ctime>
 
 #include <iostream>
 
@@ -209,6 +210,8 @@ void GamePlay::Init()
     if (!correctBuffer.loadFromFile("assets/music/correct.ogg"))
         std::cout << "ERROR"<< '\n';
     m_correctSound.setBuffer(correctBuffer);
+
+    // background sprite
 }
 
 
@@ -495,7 +498,7 @@ void GamePlay::Update(sf::Time deltaTime)
         (*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedTime = 0;
         m_context->m_states->Add(std::make_unique<MakeWish>(m_context));
     }
-    if (m_level < 7 && m_lifeRemain <= 0)
+    if (m_level < 7 && m_lifeRemain <= 0) 
     {
         (*m_context->m_userInfoVec)[*m_context->m_currUserindex].TotalQuesAnswered += m_totalNumAnswered;
         (*m_context->m_userInfoVec)[*m_context->m_currUserindex].Life = m_lifeRemain;
@@ -504,8 +507,8 @@ void GamePlay::Update(sf::Time deltaTime)
         (*m_context->m_userInfoVec)[*m_context->m_currUserindex].Wish = '*';
         (*m_context->m_userInfoVec)[*m_context->m_currUserindex].WishStatus = false;
         (*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedStatus = true;
-        //tmp_info.TimeUsed = 0;
-        //tmp_info.BannedTime = 0;
+        //tmp_info.TimeUsed = 0; // already recorded during answering question
+        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedTime = time(nullptr);
         m_context->m_states->Add(std::make_unique<GameOver>(m_context));
     }
 
@@ -513,7 +516,7 @@ void GamePlay::Update(sf::Time deltaTime)
 
 void GamePlay::Draw()
 {
-    m_context->m_window->clear(sf::Color::Blue);
+    m_context->m_window->clear(sf::Color(102, 178, 255));
     m_context->m_window->draw(m_questionTitle);
     m_context->m_window->draw(m_questionContent);
     m_context->m_window->draw(m_aButton);
