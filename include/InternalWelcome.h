@@ -24,6 +24,7 @@ private:
     sf::Text m_playerInfoButton;
     sf::Text m_logoutButton;
     sf::Text m_welcomeUser;
+    sf::Text m_bannedMsg;
 
     bool m_isStartButtonSelected;
     bool m_isStartButtonPressed;
@@ -39,6 +40,8 @@ private:
 
     bool IsBoxSelected(sf::RectangleShape object);
     bool IsBoxClicked(sf::RectangleShape object, sf::Mouse::Button button);
+
+    bool showBannedMsg;
 
 public:
     InternalWelcome(std::shared_ptr<Context> &context);

@@ -111,7 +111,10 @@ void MakeWish::Init()
     m_prof.setTexture(m_context->m_assets->GetTexture(PROF));
     m_prof.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
 
-
+    // load image
+    if (!m_bgImage.loadFromFile("assets/background/original_light_new.jpg"))// background image
+        std::cout << "no data exists!";
+    m_bgIamgeDraw.setTexture(m_bgImage);
 }
 
 void MakeWish::ProcessInput()
@@ -203,6 +206,7 @@ void MakeWish::Update(sf::Time deltaTime)
 void MakeWish::Draw()
 {
     m_context->m_window->clear(sf::Color::Blue);
+    m_context->m_window->draw(m_bgIamgeDraw);
     m_context->m_window->draw(m_makeWishTitle);
     m_context->m_window->draw(m_submitButton);
     m_context->m_window->draw(m_wishBox);

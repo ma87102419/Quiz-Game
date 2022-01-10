@@ -9,9 +9,9 @@
 
 InternalWelcome::InternalWelcome(std::shared_ptr<Context> &context)
         : m_context(context),
-          m_isStartButtonSelected(false), m_isStartButtonPressed(false),
+          m_isStartButtonSelected(false), m_isStartButtonPressed(false), 
           m_isPlayerInfoButtonSelected(false), m_isPlayerInfoButtonPressed(false),
-          m_isLogoutButtonSelected(false), m_isLogoutButtonPressed(false)
+          m_isLogoutButtonSelected(false), m_isLogoutButtonPressed(false), showBannedMsg(false)
 {
 }
 
@@ -66,7 +66,7 @@ void InternalWelcome::Init()
     m_playerInfoButton.setString(L"玩家資訊");
     m_playerInfoButton.setOrigin(m_playerInfoButton.getLocalBounds().width / 2,
                                  m_playerInfoButton.getLocalBounds().height / 2);
-    m_playerInfoButton.setPosition(m_context->m_window->getSize().x / 2 - 30.f,
+    m_playerInfoButton.setPosition(m_context->m_window->getSize().x / 2 - 15.f,
                              m_context->m_window->getSize().y / 2 - 75.f);
     m_playerInfoButton.setCharacterSize(40);
 
@@ -77,6 +77,17 @@ void InternalWelcome::Init()
     m_logoutButton.setPosition(m_context->m_window->getSize().x / 2,
                                    m_context->m_window->getSize().y / 2);
     m_logoutButton.setCharacterSize(40);
+
+    // error message
+    m_bannedMsg.setFont(m_context->m_assets->GetFont(MAIN_FONT));
+    m_bannedMsg.setString(L"目前不可玩遊戲");
+    m_bannedMsg.setFillColor(sf::Color::Red);
+    m_bannedMsg.setOrigin(m_logoutButton.getLocalBounds().width / 2,
+        m_logoutButton.getLocalBounds().height / 2);
+    m_bannedMsg.setPosition(m_context->m_window->getSize().x / 2,
+        m_context->m_window->getSize().y / 2 + 100.f);
+    m_bannedMsg.setCharacterSize(20);
+
 }
 
 void InternalWelcome::ProcessInput()
@@ -170,9 +181,21 @@ void InternalWelcome::Update(sf::Time deltaTime)
 
     if (m_isStartButtonPressed)
     {
-        (*m_context->m_userInfoVec)[*m_context->m_currUserindex].TimeUsed = 0;
-        m_context->m_states->PopCurrent();
-        m_context->m_states->Add(std::make_unique<GamePlay>(m_context));
+        // add the condition a user can;t login the game
+        if ((*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedStatus = true &&
+            time(nullptr) - (*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedTime < 30) // TODO: make it a memebr variable
+        {
+            showBannedMsg = true;
+        }
+        else
+        {
+            showBannedMsg = false;
+            (*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedStatus = false;
+            (*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedTime = 0;
+            (*m_context->m_userInfoVec)[*m_context->m_currUserindex].TimeUsed = 0;
+            m_context->m_states->PopCurrent();
+            m_context->m_states->Add(std::make_unique<GamePlay>(m_context));
+        }
     }
     else if (m_isPlayerInfoButtonPressed)
     {
@@ -189,11 +212,13 @@ void InternalWelcome::Update(sf::Time deltaTime)
 
 void InternalWelcome::Draw()
 {
-    m_context->m_window->clear(sf::Color::Blue);
+    m_context->m_window->clear(sf::Color(102, 178, 255));
     m_context->m_window->draw(m_internalWelcomeTitle);
     m_context->m_window->draw(m_startButton);
     m_context->m_window->draw(m_playerInfoButton);
     m_context->m_window->draw(m_logoutButton);
+    if(showBannedMsg == true)
+        m_context->m_window->draw(m_bannedMsg);
     m_context->m_window->display();
 }
 

@@ -85,14 +85,16 @@ void Register::Init()
     // Title
     m_registerTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_registerTitle.setString(L"註冊來開始遊戲");
+    //m_registerTitle.setFillColor(sf::Color::Black);
     m_registerTitle.setOrigin(m_registerTitle.getLocalBounds().width / 2,
                             m_registerTitle.getLocalBounds().height / 2);
-    m_registerTitle.setPosition(m_context->m_window->getSize().x / 2 - 300.f,
+    m_registerTitle.setPosition(m_context->m_window->getSize().x / 2 - 120.f,
                               m_context->m_window->getSize().y / 2 - 330.f);
     m_registerTitle.setCharacterSize(54);
     // Buttons
     m_registerButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_registerButton.setString(L"註冊");
+   // m_registerButton.setFillColor(sf::Color::Black);
     m_registerButton.setOrigin(m_registerButton.getLocalBounds().width / 2,
                             m_registerButton.getLocalBounds().height / 2);
     m_registerButton.setPosition(m_context->m_window->getSize().x / 2,
@@ -112,6 +114,7 @@ void Register::Init()
     // back button
     m_backButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_backButton.setString(L"上一頁");
+    //m_backButton.setFillColor(sf::Color::Black);
     m_backButton.setOrigin(m_backButton.getLocalBounds().width / 2,
                            m_backButton.getLocalBounds().height / 2);
     m_backButton.setPosition(m_context->m_window->getSize().x / 2,
@@ -120,6 +123,7 @@ void Register::Init()
 
     m_returnMenuButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_returnMenuButton.setString(L"回到主選單");
+   // m_returnMenuButton.setFillColor(sf::Color::Black);
     m_returnMenuButton.setOrigin(m_returnMenuButton.getLocalBounds().width / 2,
                                  m_returnMenuButton.getLocalBounds().height / 2);
     m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2,
@@ -129,18 +133,20 @@ void Register::Init()
     // user name and pwd
     m_userName.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_userName.setString(L"使用者名稱 : ");
+    //m_userName.setFillColor(sf::Color::Black);
     m_userName.setOrigin(m_userName.getLocalBounds().width / 2,
                          m_userName.getLocalBounds().height / 2);
-    m_userName.setPosition(m_context->m_window->getSize().x / 2 - 150.f,
-                           m_context->m_window->getSize().y / 2 - 120.f);
+    m_userName.setPosition(m_context->m_window->getSize().x / 2 - 200.f,
+                           m_context->m_window->getSize().y / 2 - 115.f);
     m_userName.setCharacterSize(40);
 
     m_pwd.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_pwd.setString(L"密碼 : ");
+   // m_pwd.setFillColor(sf::Color::Black);
     m_pwd.setOrigin(m_pwd.getLocalBounds().width / 2,
                     m_pwd.getLocalBounds().height / 2);
-    m_pwd.setPosition(m_context->m_window->getSize().x / 2 - 200.f,
-                      m_context->m_window->getSize().y / 2 - 60.f);
+    m_pwd.setPosition(m_context->m_window->getSize().x / 2 - 125.f,
+                      m_context->m_window->getSize().y / 2 - 65.f);
     m_pwd.setCharacterSize(40);
     // Textboxes
     m_userNameBox.setSize(sf::Vector2f(300, 30));
@@ -177,6 +183,14 @@ void Register::Init()
     m_pwdText.setPosition(m_context->m_window->getSize().x / 2 + 90.f,
                           m_context->m_window->getSize().y / 2 - 50.f);
     m_pwdText.setCharacterSize(25);
+
+
+    // ntu emblem draw
+    if (!m_ntuEmblem.loadFromFile("assets/background/Emblem72.png"))// background image
+        std::cout << "no data exists!";
+    m_ntuEmblemDraw.setTexture(m_ntuEmblem);
+    m_ntuEmblemDraw.setPosition(m_context->m_window->getSize().x / 2 + 260.f,
+        m_context->m_window->getSize().y / 2 - 300.f);
 
 }
 
@@ -407,7 +421,7 @@ void Register::Update(sf::Time deltaTime)
     }
     else if (m_isUserBoxPressed)
     {
-        m_userNameBox.setOutlineColor(sf::Color::Black);
+        m_userNameBox.setOutlineColor(sf::Color::Black); //? 
         m_pwdBox.setOutlineColor(sf::Color::White);
         m_nameText.setString(m_name + '|');
         m_pwdText.setString(Register::MaskPwd(m_password));
@@ -431,6 +445,7 @@ void Register::Draw()
     m_context->m_window->draw(m_backButton);
     m_context->m_window->draw(m_userName);
     m_context->m_window->draw(m_pwd);
+    m_context->m_window->draw(m_ntuEmblemDraw);
     m_context->m_window->draw(m_userNameBox);
     m_context->m_window->draw(m_pwdBox);
     m_context->m_window->draw(m_nameText);

@@ -113,13 +113,13 @@ void PauseGame::Update(sf::Time deltaTime)
 {
     if (m_isContinueButtonSelected)
     {
-        m_continueButton.setFillColor(sf::Color::Black);
+        m_continueButton.setFillColor(sf::Color(121, 2, 2));
         m_returnMenuButton.setFillColor(sf::Color::White);
     }
     else if (m_isReturnMenuButtonSelected)
     {
         m_continueButton.setFillColor(sf::Color::White);
-        m_returnMenuButton.setFillColor(sf::Color::Black);
+        m_returnMenuButton.setFillColor(sf::Color(121, 2, 2));
     }
     else
     {
@@ -139,7 +139,7 @@ void PauseGame::Update(sf::Time deltaTime)
 
 void PauseGame::Draw()
 {
-    m_context->m_window->clear(sf::Color::Red);
+    m_context->m_window->clear(sf::Color::Black);
     m_context->m_window->draw(m_pauseTitle);
     m_context->m_window->draw(m_continueButton);
     m_context->m_window->draw(m_returnMenuButton);
