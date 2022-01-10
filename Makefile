@@ -369,6 +369,30 @@ src/PauseGame.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/PauseGame.cpp.s
 .PHONY : src/PauseGame.cpp.s
 
+src/PlayerInfo.o: src/PlayerInfo.cpp.o
+.PHONY : src/PlayerInfo.o
+
+# target to build an object file
+src/PlayerInfo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/PlayerInfo.cpp.o
+.PHONY : src/PlayerInfo.cpp.o
+
+src/PlayerInfo.i: src/PlayerInfo.cpp.i
+.PHONY : src/PlayerInfo.i
+
+# target to preprocess a source file
+src/PlayerInfo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/PlayerInfo.cpp.i
+.PHONY : src/PlayerInfo.cpp.i
+
+src/PlayerInfo.s: src/PlayerInfo.cpp.s
+.PHONY : src/PlayerInfo.s
+
+# target to generate assembly for a file
+src/PlayerInfo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuizGame.dir/build.make CMakeFiles/QuizGame.dir/src/PlayerInfo.cpp.s
+.PHONY : src/PlayerInfo.cpp.s
+
 src/Ranking.o: src/Ranking.cpp.o
 .PHONY : src/Ranking.o
 
@@ -528,6 +552,9 @@ help:
 	@echo "... src/PauseGame.o"
 	@echo "... src/PauseGame.i"
 	@echo "... src/PauseGame.s"
+	@echo "... src/PlayerInfo.o"
+	@echo "... src/PlayerInfo.i"
+	@echo "... src/PlayerInfo.s"
 	@echo "... src/Ranking.o"
 	@echo "... src/Ranking.i"
 	@echo "... src/Ranking.s"

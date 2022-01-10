@@ -25,7 +25,7 @@ private:
     sf::Text m_returnMenuButton;
     sf::Text m_backButton;
     sf::Text m_userName;
-    sf::Text m_pwd;
+    sf::Text m_UserPwd;
     sf::Text m_nameText;
     sf::Text m_pwdText;
     sf::Text m_errorMsg; // error message when there is already the same username

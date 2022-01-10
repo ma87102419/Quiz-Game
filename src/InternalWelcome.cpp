@@ -1,6 +1,7 @@
 #include "../include/InternalWelcome.h"
 #include "../include/MainMenu.h"
 #include "../include/Welcome.h"
+#include "../include/PlayerInfo.h"
 #include "../include/GamePlay.h"
 
 
@@ -182,7 +183,7 @@ void InternalWelcome::Update(sf::Time deltaTime)
     if (m_isStartButtonPressed)
     {
         // add the condition a user can;t login the game
-        if ((*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedStatus = true &&
+        if ((*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedStatus &&
             time(nullptr) - (*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedTime < 30) // TODO: make it a memebr variable
         {
             showBannedMsg = true;
@@ -200,7 +201,7 @@ void InternalWelcome::Update(sf::Time deltaTime)
     else if (m_isPlayerInfoButtonPressed)
     {
         m_context->m_states->PopCurrent();
-        m_context->m_states->Add(std::make_unique<Welcome>(m_context));
+        m_context->m_states->Add(std::make_unique<PlayerInfo>(m_context));
     }
     else if (m_isLogoutButtonPressed) // TODO &&...check valid user
     {

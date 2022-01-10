@@ -73,7 +73,6 @@ void Ranking::getRankInfo(std::vector<std::string> &sortedNames, std::vector<std
         }
     }
 
-
     return;
 }
 

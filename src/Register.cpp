@@ -104,7 +104,7 @@ void Register::Init()
     // error message
     m_errorMsg.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_errorMsg.setFillColor(sf::Color(255, 0, 0));
-    m_errorMsg.setString(L"此帳號已被註冊過");
+    m_errorMsg.setString(L"此帳號已被註冊過/帳密空白！");
     m_errorMsg.setOrigin(m_errorMsg.getLocalBounds().width / 2,
                          m_errorMsg.getLocalBounds().height / 2);
     m_errorMsg.setPosition(m_context->m_window->getSize().x / 2,
@@ -140,14 +140,14 @@ void Register::Init()
                            m_context->m_window->getSize().y / 2 - 115.f);
     m_userName.setCharacterSize(40);
 
-    m_pwd.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_pwd.setString(L"密碼 : ");
+    m_UserPwd.setFont(m_context->m_assets->GetFont(MAIN_FONT));
+    m_UserPwd.setString(L"密碼 : ");
    // m_pwd.setFillColor(sf::Color::Black);
-    m_pwd.setOrigin(m_pwd.getLocalBounds().width / 2,
-                    m_pwd.getLocalBounds().height / 2);
-    m_pwd.setPosition(m_context->m_window->getSize().x / 2 - 125.f,
+    m_UserPwd.setOrigin(m_UserPwd.getLocalBounds().width / 2,
+                    m_UserPwd.getLocalBounds().height / 2);
+    m_UserPwd.setPosition(m_context->m_window->getSize().x / 2 - 125.f,
                       m_context->m_window->getSize().y / 2 - 65.f);
-    m_pwd.setCharacterSize(40);
+    m_UserPwd.setCharacterSize(40);
     // Textboxes
     m_userNameBox.setSize(sf::Vector2f(300, 30));
     m_userNameBox.setFillColor(sf::Color::White);
@@ -319,17 +319,6 @@ void Register::ProcessInput()
         }
     }
 
-    for (int i = 0; i < (*m_context->m_userInfoVec).size(); i++)
-    {
-        if (m_name == (*m_context->m_userInfoVec)[i].User)
-        {
-            m_validUser = false;
-       
-            break;
-        }
-    }
-    
-
 }
 
 void Register::Update(sf::Time deltaTime)
@@ -395,6 +384,15 @@ void Register::Update(sf::Time deltaTime)
     }
     else if (m_isRegisterButtonPressed) // TODO &&...check valid user
     {
+        m_validUser = true;
+        for (int i = 0; i < (*m_context->m_userInfoVec).size(); i++)
+        {
+            if (m_name.length() == 0 || m_password.length() == 0 || m_name == (*m_context->m_userInfoVec)[i].User)
+            {
+                m_validUser = false;
+                break;
+            }
+        }
         struct UserInfo tmp_info;
         if (m_validUser)
         {
@@ -444,7 +442,7 @@ void Register::Draw()
     m_context->m_window->draw(m_registerButton);
     m_context->m_window->draw(m_backButton);
     m_context->m_window->draw(m_userName);
-    m_context->m_window->draw(m_pwd);
+    m_context->m_window->draw(m_UserPwd);
     m_context->m_window->draw(m_ntuEmblemDraw);
     m_context->m_window->draw(m_userNameBox);
     m_context->m_window->draw(m_pwdBox);

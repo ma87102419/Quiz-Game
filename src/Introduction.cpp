@@ -56,7 +56,20 @@ void Introduction::Init()
     // load texture and sprite
     if (!m_bgImage.loadFromFile("assets/background/original_light_new.jpg"))// background image
         std::cout << "no data exists!";
-    m_bgIamgeDraw.setTexture(m_bgImage);
+    m_bgImageDraw.setTexture(m_bgImage);
+
+    // Content
+    /*sf::String contentText = L"某天，你突然發現你深陷在夢中，醒不過來。現實中，你只是一個混到畢業的資管系學生，\n目前是個什麼程式都不會打的無業遊民。";
+    //contentText += "\n";
+    //contentText += L"目前是個什麼程式都不會打的無業遊民。";
+    m_introContent.setFont(m_context->m_assets->GetFont(MAIN_FONT));
+    m_introContent.setString(contentText);
+    m_introContent.setFillColor(sf::Color::Black);
+    m_introContent.setOrigin(m_introContent.getLocalBounds().width / 2,
+                             m_introContent.getLocalBounds().height / 2);
+    m_introContent.setPosition(m_context->m_window->getSize().x / 2,
+                                   m_context->m_window->getSize().y / 2 -250.f);*/
+
 }
 
 void Introduction::ProcessInput()
@@ -100,8 +113,9 @@ void Introduction::Update(sf::Time deltaTime)
 void Introduction::Draw()
 {
     m_context->m_window->clear();
-    m_context->m_window->draw(m_bgIamgeDraw);
+    m_context->m_window->draw(m_bgImageDraw);
     m_context->m_window->draw(m_introTitle);
+    m_context->m_window->draw(m_introContent);
     m_context->m_window->draw(m_returnMenuButton);
     m_context->m_window->display();
 }
