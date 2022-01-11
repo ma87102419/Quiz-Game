@@ -88,7 +88,7 @@ New Platform,New Moon Building,New Moon Pavilion,New Sun Pavilion
 鬼鬼崇崇,勃勃蓬蓬,鬱鬱蒼蒼,團團圓圓
 28,29,27,30
 托福 83 分以上,雅思 6.5 級以上,全民英檢中高級初複試通過,多益 900 分以上，沒有考口說與寫作
-Introduction,Selection and Reperirion,Operator Overloading,Complexity and Graph
+1,16,17,5
 Programming Design Online Grading System,cpP Design Online Grading System,Programming Design Online torturinG System,Python Design Online Grading System
 0:15,0:26,0:37,0:48
 8:32,8:53,9:24,9:39

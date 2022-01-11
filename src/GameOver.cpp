@@ -1,6 +1,6 @@
 #include "../include/GameOver.h"
 #include "../include/MainMenu.h"
-
+#include <iostream>
 #include <SFML/Window/Event.hpp>
 
 GameOver::GameOver(std::shared_ptr<Context> &context)
@@ -37,32 +37,39 @@ bool GameOver::IsTextClicked(sf::Text object, sf::Mouse::Button button)
 
 void GameOver::Init()
 {
+    m_context->m_assets->AddFont(MAIN_FONT, "assets/fonts/NotoSerifTC-Medium.otf");
     // Title
     m_gameOverTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
+    m_gameOverTitle.setFillColor(sf::Color::Black);
     m_gameOverTitle.setString(L"遊戲結束");
     m_gameOverTitle.setOrigin(m_gameOverTitle.getLocalBounds().width / 2,
                               m_gameOverTitle.getLocalBounds().height / 2);
-    m_gameOverTitle.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
-                                m_context->m_window->getSize().y / 2 - 330.f);
-    m_gameOverTitle.setCharacterSize(54);
+    m_gameOverTitle.setPosition(m_context->m_window->getSize().x / 2 - 80.f,
+                                m_context->m_window->getSize().y / 2 - 530.f);
+    m_gameOverTitle.setCharacterSize(84);
 
     // Return Menu Button
     m_returnMenuButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_returnMenuButton.setString(L"登出並回到主選單");
     m_returnMenuButton.setOrigin(m_returnMenuButton.getLocalBounds().width / 2,
                                  m_returnMenuButton.getLocalBounds().height / 2);
-    m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
-                              m_context->m_window->getSize().y / 2 - 150.f);
-    m_returnMenuButton.setCharacterSize(40);
+    m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2 - 70.f,
+                              m_context->m_window->getSize().y / 2 - 250.f);
+    m_returnMenuButton.setCharacterSize(64);
 
     // Exit Button
     m_exitButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_exitButton.setString(L"退出遊戲");
     m_exitButton.setOrigin(m_exitButton.getLocalBounds().width / 2,
                            m_exitButton.getLocalBounds().height / 2);
-    m_exitButton.setPosition(m_context->m_window->getSize().x / 2,
-                             m_context->m_window->getSize().y / 2 - 75.f);
-    m_exitButton.setCharacterSize(40);
+    m_exitButton.setPosition(m_context->m_window->getSize().x / 2 - 30.f,
+                             m_context->m_window->getSize().y / 2 - 100.f);
+    m_exitButton.setCharacterSize(64);
+
+    // load image
+    if (!m_bgImage.loadFromFile("assets/background/original_light_new.jpg"))// background image
+        std::cout << "no data exists!";
+    m_bgImageDraw.setTexture(m_bgImage);
 }
 
 void GameOver::ProcessInput()
@@ -111,13 +118,18 @@ void GameOver::Update(sf::Time deltaTime)
 {
     if (m_isReturnMenuButtonSelected)
     {
-        m_returnMenuButton.setFillColor(sf::Color::Black);
-        m_exitButton.setFillColor(sf::Color::White);
+        m_returnMenuButton.setFillColor(sf::Color(121,2,2));
+        m_exitButton.setFillColor(sf::Color::Black);
     }
     else if (m_isExitButtonSelected)
     {
-        m_exitButton.setFillColor(sf::Color::Black);
-        m_returnMenuButton.setFillColor(sf::Color::White);
+        m_exitButton.setFillColor(sf::Color(121,2,2));
+        m_returnMenuButton.setFillColor(sf::Color::Black);
+    }
+    else
+    {
+       m_exitButton.setFillColor(sf::Color::Black);
+       m_returnMenuButton.setFillColor(sf::Color::Black); 
     }
 
     if (m_isReturnMenuButtonPressed)
@@ -133,7 +145,8 @@ void GameOver::Update(sf::Time deltaTime)
 
 void GameOver::Draw()
 {
-    m_context->m_window->clear(sf::Color::Blue);
+    m_context->m_window->clear();
+    m_context->m_window->draw(m_bgImageDraw);
     m_context->m_window->draw(m_gameOverTitle);
     m_context->m_window->draw(m_returnMenuButton);
     m_context->m_window->draw(m_exitButton);

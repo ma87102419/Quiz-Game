@@ -50,34 +50,34 @@ void InternalWelcome::Init()
     m_internalWelcomeTitle.setString("Welcome " + (*m_context->m_userInfoVec)[*m_context->m_currUserindex].User + " !");
     m_internalWelcomeTitle.setOrigin(m_internalWelcomeTitle.getLocalBounds().width / 2,
                                      m_internalWelcomeTitle.getLocalBounds().height / 2);
-    m_internalWelcomeTitle.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
-                              m_context->m_window->getSize().y / 2 - 330.f);
-    m_internalWelcomeTitle.setCharacterSize(54);
+    m_internalWelcomeTitle.setPosition(m_context->m_window->getSize().x / 2 - 80.f,
+                              m_context->m_window->getSize().y / 2 - 530.f);
+    m_internalWelcomeTitle.setCharacterSize(84);
 
     // Buttons
     m_startButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_startButton.setString(L"開始遊戲");
     m_startButton.setOrigin(m_startButton.getLocalBounds().width / 2,
                             m_startButton.getLocalBounds().height / 2);
-    m_startButton.setPosition(m_context->m_window->getSize().x / 2,
-                              m_context->m_window->getSize().y / 2 - 150.f);
-    m_startButton.setCharacterSize(40);
+    m_startButton.setPosition(m_context->m_window->getSize().x / 2 - 30.f,
+                              m_context->m_window->getSize().y / 2 - 250.f);
+    m_startButton.setCharacterSize(64);
 
     m_playerInfoButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_playerInfoButton.setString(L"玩家資訊");
     m_playerInfoButton.setOrigin(m_playerInfoButton.getLocalBounds().width / 2,
                                  m_playerInfoButton.getLocalBounds().height / 2);
-    m_playerInfoButton.setPosition(m_context->m_window->getSize().x / 2 - 15.f,
-                             m_context->m_window->getSize().y / 2 - 75.f);
-    m_playerInfoButton.setCharacterSize(40);
+    m_playerInfoButton.setPosition(m_context->m_window->getSize().x / 2 - 30.f,
+                             m_context->m_window->getSize().y / 2 - 100.f);
+    m_playerInfoButton.setCharacterSize(64);
 
     m_logoutButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_logoutButton.setString(L"登出");
     m_logoutButton.setOrigin(m_logoutButton.getLocalBounds().width / 2,
                              m_logoutButton.getLocalBounds().height / 2);
-    m_logoutButton.setPosition(m_context->m_window->getSize().x / 2,
-                                   m_context->m_window->getSize().y / 2);
-    m_logoutButton.setCharacterSize(40);
+    m_logoutButton.setPosition(m_context->m_window->getSize().x / 2 - 30.f,
+                                   m_context->m_window->getSize().y / 2 + 50.f);
+    m_logoutButton.setCharacterSize(64);
 
     // error message
     m_bannedMsg.setFont(m_context->m_assets->GetFont(MAIN_FONT));
@@ -86,8 +86,14 @@ void InternalWelcome::Init()
     m_bannedMsg.setOrigin(m_logoutButton.getLocalBounds().width / 2,
         m_logoutButton.getLocalBounds().height / 2);
     m_bannedMsg.setPosition(m_context->m_window->getSize().x / 2,
-        m_context->m_window->getSize().y / 2 + 100.f);
-    m_bannedMsg.setCharacterSize(20);
+        m_context->m_window->getSize().y / 2 + 80.f);
+    m_bannedMsg.setCharacterSize(40);
+
+    // ntu emblem draw
+    if (!m_ntuEmblem.loadFromFile("assets/background/Emblem72.png"))// background image
+        std::cout << "no data exists!";
+    m_ntuEmblemDraw.setTexture(m_ntuEmblem);
+    m_ntuEmblemDraw.setPosition(m_context->m_window->getSize().x / 2 - 960.f,                m_context->m_window->getSize().y / 2 - 530.f);
 
 }
 
@@ -223,6 +229,7 @@ void InternalWelcome::Draw()
     m_context->m_window->draw(m_internalWelcomeTitle);
     m_context->m_window->draw(m_startButton);
     m_context->m_window->draw(m_playerInfoButton);
+    m_context->m_window->draw(m_ntuEmblemDraw);
     m_context->m_window->draw(m_logoutButton);
     if(showBannedMsg == true)
         m_context->m_window->draw(m_bannedMsg);

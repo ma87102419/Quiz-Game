@@ -32,7 +32,7 @@ std::string Game::dec_spaces(std::string s)
 
 Game::Game() : m_context(std::make_shared<Context>()), m_UserInfoFileName("assets/Info/user_info_utf8.txt")
 {
-    m_context->m_window->create(sf::VideoMode(1440, 800, 32), "Quiz Game", sf::Style::Close);
+    m_context->m_window->create(sf::VideoMode(2160, 1200, 32), "Quiz Game", sf::Style::Close);
     m_context->m_states->Add(std::make_unique<MainMenu>(m_context));
 }
 

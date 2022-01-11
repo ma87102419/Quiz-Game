@@ -22,6 +22,9 @@ private:
     bool m_isExitButtonSelected;
     bool m_isExitButtonPressed;
 
+    sf::Texture m_bgImage; // background image
+    sf::Sprite m_bgImageDraw; // texture to sprite
+
     bool IsTextSelected(sf::Text object);
     bool IsTextClicked(sf::Text object, sf::Mouse::Button button);
 

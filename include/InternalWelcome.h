@@ -26,6 +26,9 @@ private:
     sf::Text m_welcomeUser;
     sf::Text m_bannedMsg;
 
+    sf::Texture m_ntuEmblem; // background image
+    sf::Sprite m_ntuEmblemDraw; // texture to sprite
+    
     bool m_isStartButtonSelected;
     bool m_isStartButtonPressed;
 

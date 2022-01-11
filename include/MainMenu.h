@@ -22,7 +22,7 @@ private:
     sf::Text m_exitButton;
     // sf texture
     sf::Texture m_bgImage; // background image
-    sf::Sprite m_bgIamgeDraw; // texture to sprite
+    sf::Sprite m_bgImageDraw; // texture to sprite
 
     bool m_isPlayButtonSelected;
     bool m_isPlayButtonPressed;

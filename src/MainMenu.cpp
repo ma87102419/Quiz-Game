@@ -2,8 +2,7 @@
 #include "../include/Introduction.h"
 #include "../include/Ranking.h"
 #include "../include/Welcome.h"
-#include "../include/MakeWish.h"
-
+#include "../include/GameOver.h"
 
 #include <SFML/Window/Event.hpp>
 #include <cmath>
@@ -53,9 +52,9 @@ void MainMenu::Init()
     m_gameTitle.setFillColor(sf::Color::Black);
     m_gameTitle.setOrigin(m_gameTitle.getLocalBounds().width / 2,
                           m_gameTitle.getLocalBounds().height / 2);
-    m_gameTitle.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
-                            m_context->m_window->getSize().y / 2 - 330.f);
-    m_gameTitle.setCharacterSize(54);
+    m_gameTitle.setPosition(m_context->m_window->getSize().x / 2 - 80.f,
+                            m_context->m_window->getSize().y / 2 - 530.f);
+    m_gameTitle.setCharacterSize(84);
 
     // Play Button
     m_playButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
@@ -63,9 +62,9 @@ void MainMenu::Init()
     m_playButton.setFillColor(sf::Color::Black); // change color of the text
     m_playButton.setOrigin(m_playButton.getLocalBounds().width / 2,
                            m_playButton.getLocalBounds().height / 2);
-    m_playButton.setPosition(m_context->m_window->getSize().x / 2,
-                             m_context->m_window->getSize().y / 2 - 150.f);
-    m_playButton.setCharacterSize(40);
+    m_playButton.setPosition(m_context->m_window->getSize().x / 2 - 30.f,
+                             m_context->m_window->getSize().y / 2 - 250.f);
+    m_playButton.setCharacterSize(64);
 
     // Ranking Button
     m_rankButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
@@ -73,9 +72,9 @@ void MainMenu::Init()
     m_rankButton.setFillColor(sf::Color::Black);
     m_rankButton.setOrigin(m_rankButton.getLocalBounds().width / 2,
                            m_rankButton.getLocalBounds().height / 2);
-    m_rankButton.setPosition(m_context->m_window->getSize().x / 2,
-                             m_context->m_window->getSize().y / 2 - 75.f);
-    m_rankButton.setCharacterSize(40);
+    m_rankButton.setPosition(m_context->m_window->getSize().x / 2 - 30.f,
+                             m_context->m_window->getSize().y / 2 - 100.f);
+    m_rankButton.setCharacterSize(64);
 
     // Intro Button
     m_introButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
@@ -83,9 +82,9 @@ void MainMenu::Init()
     m_introButton.setFillColor(sf::Color::Black);
     m_introButton.setOrigin(m_introButton.getLocalBounds().width / 2,
                            m_introButton.getLocalBounds().height / 2);
-    m_introButton.setPosition(m_context->m_window->getSize().x / 2 - 5.f,
-                             m_context->m_window->getSize().y / 2);
-    m_introButton.setCharacterSize(40);
+    m_introButton.setPosition(m_context->m_window->getSize().x / 2 - 30.f,
+                             m_context->m_window->getSize().y / 2 + 50.f);
+    m_introButton.setCharacterSize(64);
 
     // Exit Button
     m_exitButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
@@ -93,14 +92,14 @@ void MainMenu::Init()
     m_exitButton.setFillColor(sf::Color::Black);
     m_exitButton.setOrigin(m_exitButton.getLocalBounds().width / 2,
                            m_exitButton.getLocalBounds().height / 2);
-    m_exitButton.setPosition(m_context->m_window->getSize().x / 2,
-                             m_context->m_window->getSize().y / 2 + 75.f);
-    m_exitButton.setCharacterSize(40);
+    m_exitButton.setPosition(m_context->m_window->getSize().x / 2 - 30.f,
+                             m_context->m_window->getSize().y / 2 + + 200.f);
+    m_exitButton.setCharacterSize(64);
 
     // load image
     if (!m_bgImage.loadFromFile("assets/background/original_light_new.jpg"))// background image
-        std::cout << "no data exists!"; 
-    m_bgIamgeDraw.setTexture(m_bgImage);
+        std::cout << "no data exists!";
+    m_bgImageDraw.setTexture(m_bgImage);
 }
 
 
@@ -252,7 +251,7 @@ void MainMenu::Update(sf::Time deltaTime)
 void MainMenu::Draw()
 {
     m_context->m_window->clear();
-    m_context->m_window->draw(m_bgIamgeDraw);
+    m_context->m_window->draw(m_bgImageDraw);
     m_context->m_window->draw(m_gameTitle);
     m_context->m_window->draw(m_playButton);
     m_context->m_window->draw(m_rankButton);

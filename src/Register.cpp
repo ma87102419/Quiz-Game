@@ -84,13 +84,13 @@ void Register::Init()
 {
     // Title
     m_registerTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_registerTitle.setString(L"註冊來開始遊戲");
+    m_registerTitle.setString(L"註冊來開始遊戲吧！");
     //m_registerTitle.setFillColor(sf::Color::Black);
     m_registerTitle.setOrigin(m_registerTitle.getLocalBounds().width / 2,
                             m_registerTitle.getLocalBounds().height / 2);
-    m_registerTitle.setPosition(m_context->m_window->getSize().x / 2 - 120.f,
-                              m_context->m_window->getSize().y / 2 - 330.f);
-    m_registerTitle.setCharacterSize(54);
+    m_registerTitle.setPosition(m_context->m_window->getSize().x / 2 - 250.f,
+                              m_context->m_window->getSize().y / 2 - 530.f);
+    m_registerTitle.setCharacterSize(84);
     // Buttons
     m_registerButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_registerButton.setString(L"註冊");
@@ -98,8 +98,8 @@ void Register::Init()
     m_registerButton.setOrigin(m_registerButton.getLocalBounds().width / 2,
                             m_registerButton.getLocalBounds().height / 2);
     m_registerButton.setPosition(m_context->m_window->getSize().x / 2,
-                              m_context->m_window->getSize().y / 2);
-    m_registerButton.setCharacterSize(40);
+                              m_context->m_window->getSize().y / 2 + 120.f);
+    m_registerButton.setCharacterSize(65);
 
     // error message
     m_errorMsg.setFont(m_context->m_assets->GetFont(MAIN_FONT));
@@ -108,8 +108,8 @@ void Register::Init()
     m_errorMsg.setOrigin(m_errorMsg.getLocalBounds().width / 2,
                          m_errorMsg.getLocalBounds().height / 2);
     m_errorMsg.setPosition(m_context->m_window->getSize().x / 2,
-        m_context->m_window->getSize().y / 2 + 60.f);
-    m_errorMsg.setCharacterSize(20);
+        m_context->m_window->getSize().y / 2 + 80.f);
+    m_errorMsg.setCharacterSize(40);
 
     // back button
     m_backButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
@@ -118,17 +118,17 @@ void Register::Init()
     m_backButton.setOrigin(m_backButton.getLocalBounds().width / 2,
                            m_backButton.getLocalBounds().height / 2);
     m_backButton.setPosition(m_context->m_window->getSize().x / 2,
-                             m_context->m_window->getSize().y / 2 + 150.f);
-    m_backButton.setCharacterSize(40);
+                             m_context->m_window->getSize().y / 2 + 370.f);
+    m_backButton.setCharacterSize(64);
 
     m_returnMenuButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_returnMenuButton.setString(L"回到主選單");
    // m_returnMenuButton.setFillColor(sf::Color::Black);
     m_returnMenuButton.setOrigin(m_returnMenuButton.getLocalBounds().width / 2,
                                  m_returnMenuButton.getLocalBounds().height / 2);
-    m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2,
-                                   m_context->m_window->getSize().y / 2 + 225.f);
-    m_returnMenuButton.setCharacterSize(40);
+    m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2 - 20.f,
+                                   m_context->m_window->getSize().y / 2 + 520.f);
+    m_returnMenuButton.setCharacterSize(64);
 
     // user name and pwd
     m_userName.setFont(m_context->m_assets->GetFont(MAIN_FONT));
@@ -136,34 +136,34 @@ void Register::Init()
     //m_userName.setFillColor(sf::Color::Black);
     m_userName.setOrigin(m_userName.getLocalBounds().width / 2,
                          m_userName.getLocalBounds().height / 2);
-    m_userName.setPosition(m_context->m_window->getSize().x / 2 - 200.f,
-                           m_context->m_window->getSize().y / 2 - 115.f);
-    m_userName.setCharacterSize(40);
+    m_userName.setPosition(m_context->m_window->getSize().x / 2 - 285.f,
+                           m_context->m_window->getSize().y / 2 - 120.f);
+    m_userName.setCharacterSize(64);
 
     m_UserPwd.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_UserPwd.setString(L"密碼 : ");
    // m_pwd.setFillColor(sf::Color::Black);
     m_UserPwd.setOrigin(m_UserPwd.getLocalBounds().width / 2,
                     m_UserPwd.getLocalBounds().height / 2);
-    m_UserPwd.setPosition(m_context->m_window->getSize().x / 2 - 125.f,
-                      m_context->m_window->getSize().y / 2 - 65.f);
-    m_UserPwd.setCharacterSize(40);
+    m_UserPwd.setPosition(m_context->m_window->getSize().x / 2 - 140.f,
+                      m_context->m_window->getSize().y / 2 - 20.f);
+    m_UserPwd.setCharacterSize(64);
     // Textboxes
-    m_userNameBox.setSize(sf::Vector2f(300, 30));
+    m_userNameBox.setSize(sf::Vector2f(500, 60));
     m_userNameBox.setFillColor(sf::Color::White);
     m_userNameBox.setOutlineThickness(2);
     m_userNameBox.setOrigin(m_userNameBox.getLocalBounds().width / 2,
                             m_userNameBox.getLocalBounds().height / 2);
-    m_userNameBox.setPosition(m_context->m_window->getSize().x / 2 + 90.f,
+    m_userNameBox.setPosition(m_context->m_window->getSize().x / 2 + 250.f,
                               m_context->m_window->getSize().y / 2 - 100.f);
 
-    m_pwdBox.setSize(sf::Vector2f(300, 30));
+    m_pwdBox.setSize(sf::Vector2f(500, 60));
     m_pwdBox.setFillColor(sf::Color::White);
     m_pwdBox.setOutlineThickness(2);
     m_pwdBox.setOrigin(m_pwdBox.getLocalBounds().width / 2,
                        m_pwdBox.getLocalBounds().height / 2);
-    m_pwdBox.setPosition(m_context->m_window->getSize().x / 2 + 90.f,
-                         m_context->m_window->getSize().y / 2 - 50.f);
+    m_pwdBox.setPosition(m_context->m_window->getSize().x / 2 + 250.f,
+                         m_context->m_window->getSize().y / 2);
 
     // Box Text
     m_nameText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
@@ -171,26 +171,26 @@ void Register::Init()
     m_nameText.setString(m_name);
     m_nameText.setOrigin(m_userNameBox.getLocalBounds().width / 2,
                          m_userNameBox.getLocalBounds().height / 2);
-    m_nameText.setPosition(m_context->m_window->getSize().x / 2 + 90.f,
+    m_nameText.setPosition(m_context->m_window->getSize().x / 2 + 250.f,
                            m_context->m_window->getSize().y / 2 -100.f);
-    m_nameText.setCharacterSize(25);
+    m_nameText.setCharacterSize(40);
 
     m_pwdText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_pwdText.setFillColor(sf::Color::Black);
     m_pwdText.setString(Register::MaskPwd(m_password));
     m_pwdText.setOrigin(m_pwdBox.getLocalBounds().width / 2,
                         m_pwdBox.getLocalBounds().height / 2);
-    m_pwdText.setPosition(m_context->m_window->getSize().x / 2 + 90.f,
-                          m_context->m_window->getSize().y / 2 - 50.f);
-    m_pwdText.setCharacterSize(25);
+    m_pwdText.setPosition(m_context->m_window->getSize().x / 2 + 250.f,
+                          m_context->m_window->getSize().y / 2);
+    m_pwdText.setCharacterSize(40);
 
 
     // ntu emblem draw
     if (!m_ntuEmblem.loadFromFile("assets/background/Emblem72.png"))// background image
         std::cout << "no data exists!";
     m_ntuEmblemDraw.setTexture(m_ntuEmblem);
-    m_ntuEmblemDraw.setPosition(m_context->m_window->getSize().x / 2 + 260.f,
-        m_context->m_window->getSize().y / 2 - 300.f);
+    m_ntuEmblemDraw.setPosition(m_context->m_window->getSize().x / 2 - 960.f,
+        m_context->m_window->getSize().y / 2 - 530.f);
 
 }
 

@@ -1,5 +1,5 @@
 #include "../include/PlayerInfo.h"
-#include "../include/MainMenu.h"
+#include "../include/InternalWelcome.h"
 #include<iostream>
 #include <SFML/Window/Event.hpp>
 
@@ -35,15 +35,16 @@ bool PlayerInfo::IsTextClicked(sf::Text object, sf::Mouse::Button button)
 
 void PlayerInfo::Init()
 {
+    m_context->m_assets->AddFont(MAIN_FONT, "assets/fonts/NotoSerifTC-Medium.otf");
     // Title
     m_playerInfoTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_playerInfoTitle.setString(L"玩家資訊");
     m_playerInfoTitle.setFillColor(sf::Color::Black);
     m_playerInfoTitle.setOrigin(m_playerInfoTitle.getLocalBounds().width / 2,
                                 m_playerInfoTitle.getLocalBounds().height / 2);
-    m_playerInfoTitle.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
-                             m_context->m_window->getSize().y / 2 - 330.f);
-    m_playerInfoTitle.setCharacterSize(54);
+    m_playerInfoTitle.setPosition(m_context->m_window->getSize().x / 2 - 80.f,
+                             m_context->m_window->getSize().y / 2 - 530.f);
+    m_playerInfoTitle.setCharacterSize(84);
 
     // Content
     m_nameText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
@@ -52,33 +53,34 @@ void PlayerInfo::Init()
     m_nameText.setOrigin(m_nameText.getLocalBounds().width / 2,
                          m_nameText.getLocalBounds().height / 2);
     m_nameText.setPosition(m_context->m_window->getSize().x / 2 + 100.f,
-                         m_context->m_window->getSize().y / 2 - 230.f);
+                         m_context->m_window->getSize().y / 2 - 330.f);
+    m_nameText.setCharacterSize(64);
     m_nameTextIcon.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_nameTextIcon.setString(L"姓名");
     m_nameTextIcon.setFillColor(sf::Color::Black);
     m_nameTextIcon.setOrigin(m_nameTextIcon.getLocalBounds().width / 2,
                          m_nameTextIcon.getLocalBounds().height / 2);
-    m_nameTextIcon.setPosition(m_context->m_window->getSize().x / 2 - 100.f,
-                           m_context->m_window->getSize().y / 2 - 230.f);
+    m_nameTextIcon.setPosition(m_context->m_window->getSize().x / 2 - 150.f,
+                           m_context->m_window->getSize().y / 2 - 330.f);
+    m_nameTextIcon.setCharacterSize(64);
 
-    m_totalQuesAnswered.setCharacterSize(30);
+    m_totalQuesAnswered.setCharacterSize(64);
     m_totalQuesAnswered.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_totalQuesAnswered.setString(std::to_string((*m_context->m_userInfoVec)[*m_context->m_currUserindex].TotalQuesAnswered));
     m_totalQuesAnswered.setFillColor(sf::Color::Black);
     m_totalQuesAnswered.setOrigin(m_totalQuesAnswered.getLocalBounds().width / 2,
                                   m_totalQuesAnswered.getLocalBounds().height / 2);
     m_totalQuesAnswered.setPosition(m_context->m_window->getSize().x / 2 + 100.f,
-                           m_context->m_window->getSize().y / 2 - 180.f);
-    m_totalQuesAnsweredIcon.setCharacterSize(30);
-    m_totalQuesAnsweredIcon.setCharacterSize(30);
+                           m_context->m_window->getSize().y / 2 - 205.f);
+    m_totalQuesAnsweredIcon.setCharacterSize(64);
     m_totalQuesAnsweredIcon.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_totalQuesAnsweredIcon.setString(L"總答題數");
     m_totalQuesAnsweredIcon.setFillColor(sf::Color::Black);
     m_totalQuesAnsweredIcon.setOrigin(m_totalQuesAnsweredIcon.getLocalBounds().width / 2,
                                   m_totalQuesAnsweredIcon.getLocalBounds().height / 2);
-    m_totalQuesAnsweredIcon.setPosition(m_context->m_window->getSize().x / 2 - 100.f,
-                                    m_context->m_window->getSize().y / 2 - 180.f);
-    m_totalQuesAnsweredIcon.setCharacterSize(30);
+    m_totalQuesAnsweredIcon.setPosition(m_context->m_window->getSize().x / 2 - 150.f,
+                                    m_context->m_window->getSize().y / 2 - 205.f);
+    m_totalQuesAnsweredIcon.setCharacterSize(64);
 
     m_timeUsed.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_timeUsed.setString(std::to_string((*m_context->m_userInfoVec)[*m_context->m_currUserindex].TimeUsed));
@@ -86,16 +88,17 @@ void PlayerInfo::Init()
     m_timeUsed.setOrigin(m_timeUsed.getLocalBounds().width / 2,
                          m_timeUsed.getLocalBounds().height / 2);
     m_timeUsed.setPosition(m_context->m_window->getSize().x / 2 + 100.f,
-                           m_context->m_window->getSize().y / 2 - 130.f);
-    m_timeUsedIcon.setCharacterSize(30);
+                           m_context->m_window->getSize().y / 2 - 80.f);
+    m_timeUsed.setCharacterSize(64);
+    m_timeUsedIcon.setCharacterSize(64);
     m_timeUsedIcon.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_timeUsedIcon.setString(L"花費時間");
     m_timeUsedIcon.setFillColor(sf::Color::Black);
     m_timeUsedIcon.setOrigin(m_timeUsedIcon.getLocalBounds().width / 2,
                          m_timeUsedIcon.getLocalBounds().height / 2);
-    m_timeUsedIcon.setPosition(m_context->m_window->getSize().x / 2 - 100.f,
-                           m_context->m_window->getSize().y / 2 - 130.f);
-    m_timeUsedIcon.setCharacterSize(30);
+    m_timeUsedIcon.setPosition(m_context->m_window->getSize().x / 2 - 150.f,
+                           m_context->m_window->getSize().y / 2 - 80.f);
+    m_timeUsedIcon.setCharacterSize(64);
 
     m_completeStatus.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     if ((*m_context->m_userInfoVec)[*m_context->m_currUserindex].CompleteStatus)
@@ -106,16 +109,16 @@ void PlayerInfo::Init()
     m_completeStatus.setOrigin(m_completeStatus.getLocalBounds().width / 2,
                                m_completeStatus.getLocalBounds().height / 2);
     m_completeStatus.setPosition(m_context->m_window->getSize().x / 2 + 100.f,
-                           m_context->m_window->getSize().y / 2 - 80.f);
-    m_completeStatus.setCharacterSize(30);
+                           m_context->m_window->getSize().y / 2 + 45.f);
+    m_completeStatus.setCharacterSize(64);
     m_completeStatusIcon.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_completeStatusIcon.setString(L"是否破關");
     m_completeStatusIcon.setFillColor(sf::Color::Black);
     m_completeStatusIcon.setOrigin(m_completeStatusIcon.getLocalBounds().width / 2,
                                m_completeStatusIcon.getLocalBounds().height / 2);
-    m_completeStatusIcon.setPosition(m_context->m_window->getSize().x / 2 - 100.f,
-                                 m_context->m_window->getSize().y / 2 - 80.f);
-    m_completeStatusIcon.setCharacterSize(30);
+    m_completeStatusIcon.setPosition(m_context->m_window->getSize().x / 2 - 200.f,
+                                 m_context->m_window->getSize().y / 2 + 45.f);
+    m_completeStatusIcon.setCharacterSize(64);
 
     m_currLevel.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_currLevel.setString(std::to_string((*m_context->m_userInfoVec)[*m_context->m_currUserindex].CurrentLv));
@@ -123,16 +126,16 @@ void PlayerInfo::Init()
     m_currLevel.setOrigin(m_currLevel.getLocalBounds().width / 2,
                               m_currLevel.getLocalBounds().height / 2);
     m_currLevel.setPosition(m_context->m_window->getSize().x / 2 + 100.f,
-                                m_context->m_window->getSize().y / 2 - 30.f);
-    m_currLevel.setCharacterSize(30);
+                                m_context->m_window->getSize().y / 2 + 170.f);
+    m_currLevel.setCharacterSize(64);
     m_currLevelIcon.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_currLevelIcon.setString(L"目前關卡");
     m_currLevelIcon.setFillColor(sf::Color::Black);
     m_currLevelIcon.setOrigin(m_currLevelIcon.getLocalBounds().width / 2,
                           m_currLevelIcon.getLocalBounds().height / 2);
-    m_currLevelIcon.setPosition(m_context->m_window->getSize().x / 2 - 100.f,
-                           m_context->m_window->getSize().y / 2 - 30.f);
-    m_currLevelIcon.setCharacterSize(30);
+    m_currLevelIcon.setPosition(m_context->m_window->getSize().x / 2 - 200.f,
+                           m_context->m_window->getSize().y / 2 + 170.f);
+    m_currLevelIcon.setCharacterSize(64);
 
     /*m_bannedTime.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_bannedTime.setString(std::to_string((*m_context->m_userInfoVec)[*m_context->m_currUserindex].BannedTime));
@@ -146,13 +149,13 @@ void PlayerInfo::Init()
 
     // Buttons
     m_returnMenuButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_returnMenuButton.setString(L"回到主選單");
+    m_returnMenuButton.setString(L"上一頁");
     m_returnMenuButton.setFillColor(sf::Color::Black);
     m_returnMenuButton.setOrigin(m_returnMenuButton.getLocalBounds().width / 2,
                                  m_returnMenuButton.getLocalBounds().height / 2);
-    m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
-                                   m_context->m_window->getSize().y / 2 + 300.f);
-    m_returnMenuButton.setCharacterSize(40);
+    m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2 - 30.f,
+                                   m_context->m_window->getSize().y / 2 + 500.f);
+    m_returnMenuButton.setCharacterSize(64);
 
     // load texture and sprite
     if (!m_bgImage.loadFromFile("assets/background/original_light_new.jpg"))// background image
@@ -195,7 +198,7 @@ void PlayerInfo::Update(sf::Time deltaTime)
     if (m_isReturnMenuButtonPressed)
     {
         m_context->m_states->PopCurrent();
-        m_context->m_states->Add(std::make_unique<MainMenu>(m_context));
+        m_context->m_states->Add(std::make_unique<InternalWelcome>(m_context));
     }
 }
 

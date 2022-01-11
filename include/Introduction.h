@@ -16,6 +16,7 @@ private:
     std::shared_ptr<Context> m_context;
     sf::Text m_introTitle;
     sf::Text m_introContent;
+    sf::Text m_introContentRule;
     sf::Text m_returnMenuButton;
     //sf::Text m_firstLine;
     sf::Texture m_bgImage; // background image

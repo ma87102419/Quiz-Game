@@ -79,15 +79,16 @@ void Ranking::getRankInfo(std::vector<std::string> &sortedNames, std::vector<std
 
 void Ranking::Init()
 {
+    m_context->m_assets->AddFont(MAIN_FONT, "assets/fonts/NotoSerifTC-Medium.otf");
     // Title
     m_rankingTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_rankingTitle.setString(L"願望清單");
     m_rankingTitle.setFillColor(sf::Color::Black);
     m_rankingTitle.setOrigin(m_rankingTitle.getLocalBounds().width / 2,
                              m_rankingTitle.getLocalBounds().height / 2);
-    m_rankingTitle.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
-                             m_context->m_window->getSize().y / 2 - 330.f);
-    m_rankingTitle.setCharacterSize(54);
+    m_rankingTitle.setPosition(m_context->m_window->getSize().x / 2 - 80.f,
+                             m_context->m_window->getSize().y / 2 - 530.f);
+    m_rankingTitle.setCharacterSize(84);
     
     // Sort
     std::vector<std::string> sortedNames;
@@ -100,62 +101,74 @@ void Ranking::Init()
     
 
     // Ranks
-    for (int i = 0; i < printN; i++)
+    for (int i = -1; i < printN; i++)
     {
         sf::Text RankText;
         RankText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-        RankText.setString(std::to_string(i + 1));
+        if (i == -1)
+            RankText.setString(L"排名");
+        else
+            RankText.setString(std::to_string(i + 1));
         RankText.setFillColor(sf::Color::Black);
         RankText.setOrigin(RankText.getLocalBounds().width / 2,
                              RankText.getLocalBounds().height / 2);
-        RankText.setPosition(m_context->m_window->getSize().x / 2 - 300.f,
-                             m_context->m_window->getSize().y / 2 - 230.f + i * 50.f);
-        RankText.setCharacterSize(30);
+        RankText.setPosition(m_context->m_window->getSize().x / 2 - 500.f,
+                             m_context->m_window->getSize().y / 2 - 230.f + i * 80.f);
+        RankText.setCharacterSize(40);
         m_rankingRanks.push_back(RankText);
     }
 
     // Names
-    for (int i = 0; i < printN; i++)
+    for (int i = -1; i < printN; i++)
     {
         sf::Text NameText;
         NameText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-        NameText.setString(sortedNames[i]);
+        if (i == -1)
+            NameText.setString(L"使用者名稱");
+        else
+            NameText.setString(sortedNames[i]);
         NameText.setFillColor(sf::Color::Black);
         NameText.setOrigin(NameText.getLocalBounds().width / 2,
                              NameText.getLocalBounds().height / 2);
-        NameText.setPosition(m_context->m_window->getSize().x / 2 - 100.f,
-                             m_context->m_window->getSize().y / 2 - 230.f + i * 50.f);
-        NameText.setCharacterSize(30);
+        NameText.setPosition(m_context->m_window->getSize().x / 2 - 300.f,
+                             m_context->m_window->getSize().y / 2 - 230.f + i * 80.f);
+        NameText.setCharacterSize(40);
         m_rankingNames.push_back(NameText);
     }
 
     // Wishes
-    for (int i = 0; i < printN; i++)
+    for (int i = -1; i < printN; i++)
     {
         sf::Text WishText;
         WishText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-        WishText.setString(sortedWishes[i]);
+        if (i == -1)
+            WishText.setString(L"願望");
+        else
+            WishText.setString(sortedWishes[i]);
         WishText.setFillColor(sf::Color::Black);
         WishText.setOrigin(WishText.getLocalBounds().width / 2,
                              WishText.getLocalBounds().height / 2);
         WishText.setPosition(m_context->m_window->getSize().x / 2 + 100.f,
-                             m_context->m_window->getSize().y / 2 - 230.f + i * 50.f);
-        WishText.setCharacterSize(30);
+                             m_context->m_window->getSize().y / 2 - 230.f + i * 80.f);
+        WishText.setCharacterSize(40);
         m_rankingWishes.push_back(WishText);
     }
 
     // Times
-    for (int i = 0; i < printN; i++)
+    for (int i = -1; i < printN; i++)
     {
         sf::Text TimeText;
         TimeText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-        TimeText.setString(std::to_string(sortedTimes[i]));
+        if (i == -1)
+            TimeText.setString(L"破關時間");
+        else
+            TimeText.setString(std::to_string(sortedTimes[i]));
         TimeText.setFillColor(sf::Color::Black);
         TimeText.setOrigin(TimeText.getLocalBounds().width / 2,
                              TimeText.getLocalBounds().height / 2);
-        TimeText.setPosition(m_context->m_window->getSize().x / 2 + 300.f,
-                             m_context->m_window->getSize().y / 2 - 230.f + i * 50.f);
-        TimeText.setCharacterSize(30);
+        TimeText.setPosition(m_context->m_window->getSize().x / 2 + 500.f,
+                             m_context->m_window->getSize().y / 2 - 230.f + i * 80.f);
+        TimeText.setCharacterSize(40);
         m_rankingTimes.push_back(TimeText);
     }
 
@@ -165,9 +178,9 @@ void Ranking::Init()
     m_returnMenuButton.setFillColor(sf::Color::Black);
     m_returnMenuButton.setOrigin(m_returnMenuButton.getLocalBounds().width / 2,
                                  m_returnMenuButton.getLocalBounds().height / 2);
-    m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
-                                   m_context->m_window->getSize().y / 2 + 300.f);
-    m_returnMenuButton.setCharacterSize(40);
+    m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2 - 20.f,
+                                   m_context->m_window->getSize().y / 2 + 500.f);
+    m_returnMenuButton.setCharacterSize(64);
 
     // load texture and sprite
     if (!m_bgImage.loadFromFile("assets/background/original_light_new.jpg"))// background image

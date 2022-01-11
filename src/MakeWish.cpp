@@ -76,20 +76,20 @@ void MakeWish::Init()
     m_makeWishTitle.setFillColor(sf::Color::Black);
     m_makeWishTitle.setOrigin(m_makeWishTitle.getLocalBounds().width / 2,
                               m_makeWishTitle.getLocalBounds().height / 2);
-    m_makeWishTitle.setPosition(m_context->m_window->getSize().x / 2 - 160.f,
-                              m_context->m_window->getSize().y / 2 - 330.f);
-    m_makeWishTitle.setCharacterSize(54);
+    m_makeWishTitle.setPosition(m_context->m_window->getSize().x / 2 - 150.f,
+                              m_context->m_window->getSize().y / 2 - 530.f);
+    m_makeWishTitle.setCharacterSize(84);
     // Buttons
     m_submitButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_submitButton.setString(L"送出");
     m_submitButton.setFillColor(sf::Color::Black);
     m_submitButton.setOrigin(m_submitButton.getLocalBounds().width / 2,
                              m_submitButton.getLocalBounds().height / 2);
-    m_submitButton.setPosition(m_context->m_window->getSize().x / 2 - 40.f,
-                                   m_context->m_window->getSize().y / 2 + 250.f);
-    m_submitButton.setCharacterSize(40);
+    m_submitButton.setPosition(m_context->m_window->getSize().x / 2 - 30.f,
+                                   m_context->m_window->getSize().y / 2 + 450.f);
+    m_submitButton.setCharacterSize(64);
     // Textboxes
-    m_wishBox.setSize(sf::Vector2f(800, 400));
+    m_wishBox.setSize(sf::Vector2f(1000, 800));
     m_wishBox.setFillColor(sf::Color::White);
     m_wishBox.setOutlineThickness(4);
     m_wishBox.setOrigin(m_wishBox.getLocalBounds().width / 2,
@@ -106,12 +106,12 @@ void MakeWish::Init()
                          m_wishBox.getLocalBounds().height / 2);
     m_wishText.setPosition(m_context->m_window->getSize().x / 2,
                            m_context->m_window->getSize().y / 2 + 25.f);
-    m_wishText.setCharacterSize(25);
+    m_wishText.setCharacterSize(40);
 
     //Sprite
     m_context->m_assets->AddTexture(PROF, "assets/textures/8-1.png");
     m_prof.setTexture(m_context->m_assets->GetTexture(PROF));
-    m_prof.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+    m_prof.setPosition(m_context->m_window->getSize().x / 2 + 450.f, m_context->m_window->getSize().y / 2 - 250.f);
 
     // load image
     if (!m_bgImage.loadFromFile("assets/background/original_light_new.jpg"))// background image

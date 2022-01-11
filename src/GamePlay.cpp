@@ -75,46 +75,46 @@ void GamePlay::Init()
     m_questionTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_questionTitle.setOrigin(m_questionTitle.getLocalBounds().width / 2,
                                m_questionTitle.getLocalBounds().height / 2);
-    m_questionTitle.setPosition(m_context->m_window->getSize().x / 2 - 120.f,
-                            m_context->m_window->getSize().y / 2 - 330.f);
-    m_questionTitle.setCharacterSize(54);
+    m_questionTitle.setPosition(m_context->m_window->getSize().x / 2 - 80.f,
+                            m_context->m_window->getSize().y / 2 - 530.f);
+    m_questionTitle.setCharacterSize(84);
 
     // Question content
     m_questionContent.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_questionContent.setOrigin(m_questionContent.getLocalBounds().width / 2,
                                  m_questionContent.getLocalBounds().height / 2);
     m_questionContent.setPosition(m_context->m_window->getSize().x / 2 - 220.f,
-                                 m_context->m_window->getSize().y / 2 - 200.f);
-    m_questionContent.setCharacterSize(30);
+                                 m_context->m_window->getSize().y / 2 - 380.f);
+    m_questionContent.setCharacterSize(48);
 
     // Button
     m_aButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_aButton.setOrigin(m_aButton.getLocalBounds().width / 2,
                         m_aButton.getLocalBounds().height / 2);
     m_aButton.setPosition(m_context->m_window->getSize().x / 2 - 50.f,
-                             m_context->m_window->getSize().y / 2 - 25.f);
-    m_aButton.setCharacterSize(30);
+                             m_context->m_window->getSize().y / 2 - 200.f);
+    m_aButton.setCharacterSize(48);
 
     m_bButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_bButton.setOrigin(m_bButton.getLocalBounds().width / 2,
                         m_bButton.getLocalBounds().height / 2);
     m_bButton.setPosition(m_context->m_window->getSize().x / 2 - 50.f,
-                          m_context->m_window->getSize().y / 2 + 50.f);
-    m_bButton.setCharacterSize(30);
+                          m_context->m_window->getSize().y / 2 - 100.f);
+    m_bButton.setCharacterSize(48);
 
     m_cButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_cButton.setOrigin(m_cButton.getLocalBounds().width / 2,
                         m_cButton.getLocalBounds().height / 2);
     m_cButton.setPosition(m_context->m_window->getSize().x / 2 - 50.f,
-                          m_context->m_window->getSize().y / 2 + 125.f);
-    m_cButton.setCharacterSize(30);
+                          m_context->m_window->getSize().y / 2);
+    m_cButton.setCharacterSize(48);
 
     m_dButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_dButton.setOrigin(m_dButton.getLocalBounds().width / 2,
                         m_dButton.getLocalBounds().height / 2);
     m_dButton.setPosition(m_context->m_window->getSize().x / 2 - 50.f,
-                          m_context->m_window->getSize().y / 2 + 200.f);
-    m_dButton.setCharacterSize(30);
+                          m_context->m_window->getSize().y / 2 + 100.f);
+    m_dButton.setCharacterSize(48);
 
     m_pauseButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_pauseButton.setString(L"暫停");
@@ -127,24 +127,24 @@ void GamePlay::Init()
     // level
     m_levelText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_levelText.setString("Level : " + std::to_string(m_level));
-    m_levelText.setCharacterSize(40);
+    m_levelText.setCharacterSize(64);
 
     // life
     m_lifeText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_lifeText.setString("Life Remain : " + std::to_string(m_lifeRemain));
     m_lifeText.setOrigin(m_lifeText.getLocalBounds().width / 2,
                          m_lifeText.getLocalBounds().height / 2);
-    m_lifeText.setPosition(m_context->m_window->getSize().x / 2 - 388.f,
-                          m_context->m_window->getSize().y / 2 - 300.f);
-    m_lifeText.setCharacterSize(40);
+    m_lifeText.setPosition(m_context->m_window->getSize().x/ 2 - 970.f,
+                          m_context->m_window->getSize().y / 2 - 500.f);
+    m_lifeText.setCharacterSize(64);
 
     // Time Remain Text
     m_timeRemainText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_timeRemainText.setOrigin(m_lifeText.getLocalBounds().width / 2,
                          m_lifeText.getLocalBounds().height / 2);
-    m_timeRemainText.setPosition(m_context->m_window->getSize().x / 2 + 600.f,
-                           m_context->m_window->getSize().y / 2 - 350.f);
-    m_timeRemainText.setCharacterSize(40);
+    m_timeRemainText.setPosition(m_context->m_window->getSize().x / 2 + 1200.f,
+                           m_context->m_window->getSize().y / 2 - 520.f);
+    m_timeRemainText.setCharacterSize(64);
     // Read files
     if(m_quesFile)
     {
@@ -178,31 +178,31 @@ void GamePlay::Init()
     //Sprite
     m_context->m_assets->AddTexture(FIRST, "assets/textures/1.png");
     m_first.setTexture(m_context->m_assets->GetTexture(FIRST));
-    m_first.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+    m_first.setPosition(m_context->m_window->getSize().x / 2 - 850.f, m_context->m_window->getSize().y / 2 - 250.f);
 
     m_context->m_assets->AddTexture(SECOND, "assets/textures/2.png");
     m_second.setTexture(m_context->m_assets->GetTexture(SECOND));
-    m_second.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+    m_second.setPosition(m_context->m_window->getSize().x / 2 - 850.f, m_context->m_window->getSize().y / 2 - 250.f);
 
     m_context->m_assets->AddTexture(THIRD, "assets/textures/3.png");
     m_third.setTexture(m_context->m_assets->GetTexture(THIRD));
-    m_third.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+    m_third.setPosition(m_context->m_window->getSize().x / 2 - 850.f, m_context->m_window->getSize().y / 2 - 250.f);
 
     m_context->m_assets->AddTexture(FOURTH, "assets/textures/4.png");
     m_fourth.setTexture(m_context->m_assets->GetTexture(FOURTH));
-    m_fourth.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+    m_fourth.setPosition(m_context->m_window->getSize().x / 2 - 850.f, m_context->m_window->getSize().y / 2 - 250.f);
 
     m_context->m_assets->AddTexture(FIFTH, "assets/textures/5.png");
     m_fifth.setTexture(m_context->m_assets->GetTexture(FIFTH));
-    m_fifth.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+    m_fifth.setPosition(m_context->m_window->getSize().x / 2 - 850.f, m_context->m_window->getSize().y / 2 - 250.f);
 
     m_context->m_assets->AddTexture(SIXTH, "assets/textures/6.png");
     m_sixth.setTexture(m_context->m_assets->GetTexture(SIXTH));
-    m_sixth.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+    m_sixth.setPosition(m_context->m_window->getSize().x / 2 - 850.f, m_context->m_window->getSize().y / 2 - 250.f);
 
     m_context->m_assets->AddTexture(SEVENTH, "assets/textures/7-1.png");
     m_seventh.setTexture(m_context->m_assets->GetTexture(SEVENTH));
-    m_seventh.setPosition(m_context->m_window->getSize().x / 2 + 250.f, m_context->m_window->getSize().y / 2 - 250.f);
+    m_seventh.setPosition(m_context->m_window->getSize().x / 2 - 850.f, m_context->m_window->getSize().y / 2 - 250.f);
 
     if (!wrongBuffer.loadFromFile("assets/music/wrong.ogg"))
         std::cout << "ERROR"<< '\n';

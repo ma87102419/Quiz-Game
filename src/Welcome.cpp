@@ -49,43 +49,43 @@ void Welcome::Init()
     m_welcomeTitle.setString("Welcome !");
     m_welcomeTitle.setOrigin(m_welcomeTitle.getLocalBounds().width / 2,
                              m_welcomeTitle.getLocalBounds().height / 2);
-    m_welcomeTitle.setPosition(m_context->m_window->getSize().x / 2 - 45.f,
-                            m_context->m_window->getSize().y / 2 - 330.f);
-    m_welcomeTitle.setCharacterSize(54);
+    m_welcomeTitle.setPosition(m_context->m_window->getSize().x / 2 - 80.f,
+                            m_context->m_window->getSize().y / 2 - 530.f);
+    m_welcomeTitle.setCharacterSize(84);
 
     // Login Button
     m_loginButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_loginButton.setString(L"登入");
     m_loginButton.setOrigin(m_loginButton.getLocalBounds().width / 2,
                            m_loginButton.getLocalBounds().height / 2);
-    m_loginButton.setPosition(m_context->m_window->getSize().x / 2,
-                             m_context->m_window->getSize().y / 2 - 150.f);
-    m_loginButton.setCharacterSize(40);
+    m_loginButton.setPosition(m_context->m_window->getSize().x / 2 - 30.f,
+                             m_context->m_window->getSize().y / 2 - 250.f);
+    m_loginButton.setCharacterSize(64);
 
     // Register Button
     m_registerButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_registerButton.setString(L"註冊");
     m_registerButton.setOrigin(m_registerButton.getLocalBounds().width / 2,
                            m_registerButton.getLocalBounds().height / 2);
-    m_registerButton.setPosition(m_context->m_window->getSize().x / 2,
-                             m_context->m_window->getSize().y / 2 - 75.f);
-    m_registerButton.setCharacterSize(40);
+    m_registerButton.setPosition(m_context->m_window->getSize().x / 2 - 30.f,
+                             m_context->m_window->getSize().y / 2 - 100.f);
+    m_registerButton.setCharacterSize(64);
 
     // Return Menu Button
     m_returnMenuButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_returnMenuButton.setString(L"回到主選單");
     m_returnMenuButton.setOrigin(m_returnMenuButton.getLocalBounds().width / 2,
                             m_returnMenuButton.getLocalBounds().height / 2);
-    m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2,
-                              m_context->m_window->getSize().y / 2);
-    m_returnMenuButton.setCharacterSize(40);
+    m_returnMenuButton.setPosition(m_context->m_window->getSize().x / 2 - 60.f,
+                              m_context->m_window->getSize().y / 2 + 50.f);
+    m_returnMenuButton.setCharacterSize(64);
 
     // ntu emblem draw
     if (!m_ntuEmblem.loadFromFile("assets/background/Emblem72.png"))// background image
         std::cout << "no data exists!";
     m_ntuEmblemDraw.setTexture(m_ntuEmblem);
-    m_ntuEmblemDraw.setPosition(m_context->m_window->getSize().x / 2 + 260.f,
-        m_context->m_window->getSize().y / 2 - 300.f);
+    m_ntuEmblemDraw.setPosition(m_context->m_window->getSize().x / 2 - 960.f,
+        m_context->m_window->getSize().y / 2 - 530.f);
 
 
 }
