@@ -3,7 +3,7 @@
 Using C++ and SFML to create quiz game.
 
 Instructor: 
-1. Ling-Chieh Kung (孔令傑)
+Ling-Chieh Kung (孔令傑)
 
 ## Report
 ## Requirements
